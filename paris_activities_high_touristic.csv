@@ -1,0 +1,111 @@
+name,description,image_url,chill_score,touristic_score,cultural_score,must_do_score,family_friendly_score,large_group_friendly_score,couple_friendly_score,small_group_friendly_score,budget,average_duration_hours,latitude,longitude
+Tour Eiffel,Visitez l'emblématique Tour Eiffel et profitez d'une vue imprenable sur Paris.,tour_eiffel.png,7,10,8,10,9,8,9,7,6,1,48.858844,2.294351
+Louvre Museum,Explorez l'un des plus grands musées du monde avec des œuvres d'art célèbres comme la Mona Lisa.,louvre_museum.png,5,10,10,10,8,7,8,6,7,4,48.860611,2.337644
+Seine River Cruise,Profitez d'une croisière relaxante sur la Seine et admirez les monuments emblématiques de Paris.,seine_river_cruise.png,8,9,7,9,9,8,10,8,5,2,48.856614,2.3522219
+Notre-Dame Cathedral,Découvrez l'architecture gothique de la cathédrale Notre-Dame de Paris.,notre_dame_cathedral.png,6,10,10,9,7,7,8,7,4,1,48.852968,2.349902
+Montmartre Walking Tour,Explorez le quartier artistique de Montmartre avec ses rues pavées et son ambiance bohème.,montmartre_walking_tour.png,7,9,8,8,6,7,9,8,5,4,48.886707,2.343104
+Champs-Élysées,Promenez-vous sur l'avenue des Champs-Élysées et découvrez les boutiques de luxe et cafés.,champs_elysees.png,7,10,7,9,8,8,9,8,6,4,48.866667,2.311667
+Palace of Versailles,"Visitez l'opulent château de Versailles, ancienne résidence des rois de France.",palace_of_versailles.png,6,10,10,10,8,7,8,7,7,4,48.804865,2.120355
+Arc de Triomphe,Montez au sommet de l'Arc de Triomphe pour une vue panoramique sur Paris.,arc_de_triomphe.png,6,10,8,9,7,7,8,7,5,4,48.873792,2.295028
+Sainte-Chapelle,"Admirez les magnifiques vitraux de la Sainte-Chapelle, un joyau de l'architecture gothique.",sainte_chapelle.png,6,9,10,8,6,6,7,7,4,2,48.855438,2.345169
+Moulin Rouge Show,Assistez à un spectacle de cabaret au légendaire Moulin Rouge.,moulin_rouge_show.png,7,9,7,8,5,8,10,8,8,4,48.884123,2.332558
+Paris Catacombs,"Explore the underground ossuaries of Paris, a unique and haunting experience.",paris_catacombs.png,5,9,8,8,4,6,7,7,5,2,48.833937,2.332302
+Musée d'Orsay,Discover the world's largest collection of impressionist and post-impressionist masterpieces.,musee_dorsay.png,6,10,10,9,7,6,8,7,7,3,48.86002,2.326565
+Sacré-Cœur Basilica,"Visit the iconic basilica of Montmartre, offering stunning views of Paris.",sacre_coeur_basilica.png,7,10,9,9,8,7,9,8,4,1,48.886704,2.343104
+Opéra Garnier Tour,"Take a guided tour of the lavishly decorated Palais Garnier, a symbol of Parisian opulence.",opera_garnier_tour.png,5,9,10,8,6,7,8,7,6,4,48.871867,2.331693
+Jardin des Tuileries,"Stroll through the beautiful Tuileries Garden, located between the Louvre and Place de la Concorde.",jardin_des_tuileries.png,9,8,7,7,9,8,9,8,3,3,48.863788,2.326599
+Versailles Gardens,"Explore the stunning gardens of the Palace of Versailles, a masterpiece of French formal gardens.",versailles_gardens.png,8,10,9,10,8,8,10,9,5,1,48.897645946501335,2.2747041234746868
+Pont Alexandre III,Admire the ornate architecture of the most beautiful bridge in Paris.,pont_alexandre_iii.png,7,9,7,8,7,7,9,8,3,1,48.863888,2.313056
+Luxembourg Gardens,"Relax in the Luxembourg Gardens, a peaceful oasis in the heart of Paris.",luxembourg_gardens.png,9,8,8,7,9,8,9,9,3,1,48.846221,2.33716
+Galeries Lafayette Rooftop,Visit the rooftop of Galeries Lafayette for a panoramic view of Paris.,galeries_lafayette_rooftop.png,8,9,7,8,7,8,9,8,4,3,48.8604845519745,2.285683923206176
+Disneyland Paris,Experience the magic of Disneyland Paris with thrilling rides and attractions.,disneyland_paris.png,7,10,6,10,10,9,8,9,8,2,48.870556,2.779167
+Canal Saint-Martin,"Enjoy a leisurely stroll along the Canal Saint-Martin, lined with trendy cafes and shops.",canal_saint_martin.png,10,7,6,7,8,7,9,9,4,3,48.80391877922543,2.342094893394884
+Bois de Boulogne,"Escape the city's hustle and bustle in this sprawling park with lakes, gardens, and trails.",bois_de_boulogne.png,10,6,5,8,9,8,9,8,3,4,48.82828069625764,2.330344920453744
+Jardin des Plantes,"Wander through the beautiful botanical gardens, a perfect spot for relaxation and picnics.",jardin_des_plantes.png,9,8,7,8,9,7,9,8,4,4,48.81201965612132,2.3384864964531857
+Coulée Verte René-Dumont,"A peaceful elevated park built on an abandoned railway line, perfect for a quiet walk.",coulee_verte_rene_dumont.png,10,7,6,7,8,7,9,8,3,3,48.82961401975221,2.359518304427515
+Île Saint-Louis,Stroll around this charming island in the Seine with quaint shops and a relaxed atmosphere.,ile_saint_louis.png,9,8,7,8,7,7,10,9,4,1,48.81187277189542,2.2967917493219403
+Buttes-Chaumont Park,"Relax in one of Paris' largest parks, featuring hills, a lake, and hidden grottos.",buttes_chaumont_park.png,10,7,6,8,9,8,9,9,3,2,48.8317983179394,2.309733159332414
+La Recyclerie,"A unique spot that combines a café, garden, and upcycling workshops for a chill vibe.",la_recyclerie.png,9,6,8,7,8,7,8,9,4,2,48.84142629945146,2.2814765623462683
+Square du Vert-Galant,"A peaceful green space at the tip of Île de la Cité, perfect for a riverside picnic.",square_du_vert_galant.png,10,7,6,8,8,6,10,8,2,2,48.80641474963488,2.2779289508820506
+Marché des Enfants Rouges,"Explore Paris' oldest covered market, offering a variety of food stalls in a cozy setting.",marche_des_enfants_rouges.png,9,8,7,7,7,7,8,9,4,2,48.869247211937,2.39165585849759
+Parc de la Villette,Relax in this sprawling park that combines green spaces with cultural venues.,parc_de_la_villette.png,10,7,8,8,9,8,9,9,3,1,48.856660145420655,2.360932619257393
+Parc Monceau,"A serene park with beautiful statues, a pond, and plenty of spots to relax.",parc_monceau.png,10,7,6,7,8,7,9,8,3,2,48.82653894909394,2.323568821292635
+Promenade Plantée,"A beautiful, elevated park built on an old railway line, ideal for a quiet stroll.",promenade_plantee.png,9,6,7,8,7,7,9,9,4,1,48.85232480534667,2.2841121941959983
+Place des Vosges,"The oldest planned square in Paris, a tranquil place to unwind and people-watch.",place_des_vosges.png,10,8,8,8,8,7,9,8,3,4,48.80939405107584,2.288153472265559
+Canal de l'Ourcq,"Enjoy a laid-back day by the canal with cafes, picnic spots, and relaxing boat rides.",canal_de_lourcq.png,9,7,6,7,8,8,9,9,3,1,48.857594649555615,2.2587043740485813
+La Campagne à Paris,Stroll through this hidden neighborhood that feels like a countryside escape in the city.,la_campagne_a_paris.png,10,5,7,6,7,6,9,8,2,4,48.892929619757616,2.315162493833718
+Belleville Park,"A park with scenic views of Paris, offering quiet spaces and a relaxed atmosphere.",belleville_park.png,9,7,6,7,8,7,8,9,3,2,48.83185689524513,2.2967693822991158
+Jardin d'Acclimatation,"A family-friendly amusement park with gardens, animals, and plenty of chill spots.",jardin_dacclimatation.png,9,8,5,7,10,8,7,8,4,3,48.86674103799637,2.354451523322319
+Bois de Vincennes,"A vast green space perfect for cycling, picnics, and leisurely walks.",bois_de_vincennes.png,10,6,7,8,9,8,9,9,3,4,48.81317978624044,2.306662775893872
+Rue Crémieux,"Stroll along this picturesque, colorful street that's perfect for a relaxing photo session.",rue_cremieux.png,9,8,6,7,6,6,9,8,2,4,48.87163272041185,2.2769405516339454
+Square des Batignolles,"A quaint English-style garden with a pond, ducks, and peaceful corners.",square_des_batignolles.png,10,6,7,7,8,7,9,8,3,1,48.82894060929472,2.2537018092587
+Rue Mouffetard Market,"A local market with fresh produce, perfect for those seeking an authentic Parisian experience.",rue_mouffetard_market.png,8,3,7,6,7,5,8,7,2,3,48.81831913620071,2.2600874447194874
+Butte Bergeyre,"A hidden neighborhood with cobblestone streets, gardens, and a vineyard overlooking Paris.",butte_bergeyre.png,9,2,8,7,6,5,9,8,2,4,48.858651293481,2.351908916024785
+Musée de la Chasse et de la Nature,"An eclectic museum dedicated to hunting and nature, offering a unique experience.",musee_de_la_chasse_et_de_la_nature.png,7,4,9,6,6,5,7,7,4,1,48.80201075461875,2.3180545266834067
+Villa Léandre,"A charming, quiet street in Montmartre that feels like a small English village.",villa_leandre.png,9,2,6,5,7,4,9,8,2,2,48.88289400292174,2.3304868816663085
+Parc Georges-Brassens,A peaceful park in the 15th arrondissement with a vineyard and a book market on weekends.,parc_georges_brassens.png,8,3,7,6,8,6,8,7,3,4,48.80046954761925,2.384500693956052
+Jardin Catherine-Labouré,"A hidden garden behind a convent, offering a serene escape from the busy city.",jardin_catherine_laboure.png,10,2,6,5,7,5,9,8,2,2,48.86778165367962,2.3985508421095054
+La Campagne à Paris,"A quaint neighborhood that feels like the countryside, hidden in the 20th arrondissement.",la_campagne_a_paris.png,9,1,7,4,7,4,8,7,2,4,48.827000797319215,2.282534547659771
+Square des Peupliers,A peaceful residential square with charming houses and a village-like feel.,square_des_peupliers.png,9,2,5,5,6,4,9,8,1,4,48.87351940221226,2.349461730465015
+Hôpital Saint-Louis Courtyard,"A hidden courtyard in a historic hospital, a quiet spot with beautiful architecture.",hopital_saint_louis_courtyard.png,8,2,8,5,6,4,7,7,2,3,48.896218854511744,2.2894983565105727
+Promenade Dora Maar,"A peaceful walkway with modern art installations, far from the city's hustle.",promenade_dora_maar.png,9,3,7,6,7,5,8,7,3,4,48.82487531435199,2.253097649919859
+Parc de Belleville,"A lesser-known park with beautiful views of the city, quiet and perfect for a relaxed afternoon.",parc_de_belleville.png,9,3,7,6,8,6,9,8,3,1,48.85761573344178,2.3637567980754213
+Square du Temple,A peaceful park in the Marais with a small pond and beautiful gardens.,square_du_temple.png,8,2,6,5,7,5,8,7,2,2,48.859204193127184,2.29800257262337
+La Petite Ceinture,"Explore the abandoned railway line, now a hidden urban jungle within the city.",la_petite_ceinture.png,9,1,8,6,6,4,9,8,2,2,48.857225190579086,2.3075195841257847
+Parc de la Butte-du-Chapeau-Rouge,"A quiet, lesser-known park offering panoramic views of the city and beautiful lawns.",parc_de_la_butte_du_chapeau_rouge.png,8,2,6,5,8,6,8,7,3,2,48.82230816326406,2.338247567033041
+Passage Brady,"A narrow passage filled with Indian and Pakistani restaurants and shops, a taste of Asia in Paris.",passage_brady.png,7,3,7,6,6,5,7,7,2,4,48.895274901151694,2.374657268285429
+Jardin du Palais Royal,"A hidden garden surrounded by arcades, perfect for a quiet stroll away from the crowds.",jardin_du_palais_royal.png,9,3,8,7,7,6,9,8,3,1,48.84471253786176,2.3443472765386724
+Square René Viviani,"A small, quiet park near Notre-Dame with the oldest tree in Paris.",square_rene_viviani.png,8,2,7,5,6,5,8,7,2,4,48.88464086724712,2.380897598317109
+Quai de Jemmapes,"A peaceful quay along the Canal Saint-Martin, popular with locals for picnics and walks.",quai_de_jemmapes.png,9,3,6,6,7,6,9,8,2,3,48.86994792753175,2.291031305222345
+Musée Zadkine,"A small museum and garden dedicated to the works of sculptor Ossip Zadkine, hidden in Montparnasse.",musee_zadkine.png,7,2,9,6,5,4,8,7,3,1,48.82974369508551,2.369707025086885
+Parc de Bercy,"A beautiful park with gardens, ponds, and greenhouses, ideal for a tranquil day out.",parc_de_bercy.png,9,3,7,7,8,7,9,8,3,4,48.881379781970246,2.2778453916458927
+Parc André Citroën,"A modern park with expansive lawns, fountains, and a tethered hot air balloon ride.",parc_andre_citroen.png,8,5,2,6,8,7,8,8,3,4,48.83965057408469,2.3929187485457915
+Beaugrenelle Shopping Mall,"A large shopping mall in the 15th arrondissement, perfect for a casual shopping day.",beaugrenelle_shopping_mall.png,7,4,1,5,7,6,6,7,5,3,48.88811031971112,2.353123241458172
+Les Halles Forum,"A busy underground shopping center in the heart of Paris, offering a mix of stores and eateries.",les_halles_forum.png,6,6,2,5,7,7,6,7,4,4,48.85812728726359,2.282326151567034
+Bowling Mouffetard,"A small, cozy bowling alley in the Latin Quarter, ideal for a fun evening with friends.",bowling_mouffetard.png,7,3,1,4,8,7,6,8,4,3,48.88817353618549,2.3921055885733384
+Batignolles Square,"A small English-style garden in the Batignolles district, perfect for a quiet afternoon.",batignolles_square.png,9,5,2,5,7,6,8,8,2,4,48.869253159007776,2.3596283710155235
+Place du Marché Saint-Honoré,"A modern square with a glass building, surrounded by cafes and shops.",place_du_marche_saint_honore.png,7,4,2,4,6,5,7,7,3,1,48.87252542798196,2.288091246389254
+Aquaboulevard,"A water park with pools, slides, and a beach area, great for family fun.",aquaboulevard.png,8,6,1,5,9,8,7,8,5,3,48.85013243819267,2.2819967966051222
+Paris Kart Indoor,An indoor go-kart track for adrenaline-seekers looking for some action in Paris.,paris_kart_indoor.png,6,3,1,4,7,8,6,8,4,1,48.89560836347232,2.3277301070895997
+Escape Hunt,"A themed escape room experience for groups, adding a bit of thrill and teamwork.",escape_hunt.png,7,4,2,5,7,8,7,8,4,1,48.86439901992296,2.25384940770818
+Pétanque at Place Dauphine,"Play a game of pétanque at the historic Place Dauphine, a relaxed and local pastime.",petanque_place_dauphine.png,9,3,2,5,6,7,8,8,2,1,48.84238550485581,2.2811205113161663
+Musée Rodin,Discover the world of sculptor Auguste Rodin in this beautiful museum and garden.,musee_rodin.png,7,8,10,9,7,6,9,8,4,2,48.86063932141279,2.313702820312726
+Musée d'Orsay,"Home to a stunning collection of Impressionist art, housed in a former railway station.",musee_dorsay.png,6,9,10,10,8,7,8,7,5,2,48.86002,2.326565
+Bibliothèque Sainte-Geneviève,"A historic library with an impressive reading room, perfect for literary enthusiasts.",bibliotheque_sainte_genevieve.png,8,7,9,8,5,6,7,6,2,3,48.830157481667456,2.3195363136547216
+Musée Carnavalet,"A museum dedicated to the history of Paris, with exhibitions that span centuries.",musee_carnavalet.png,7,8,10,8,7,6,8,7,3,1,48.866017353749264,2.2916443059442098
+Palais Garnier,"Visit the grand opera house, an architectural masterpiece and cultural icon in Paris.",palais_garnier.png,7,9,10,9,6,7,9,8,5,1,48.871867,2.331693
+Maison de Victor Hugo,"Explore the former residence of Victor Hugo, now a museum dedicated to his life and works.",maison_de_victor_hugo.png,6,7,9,7,5,5,8,6,2,2,48.86180154289988,2.3795783408884845
+Musée de l'Orangerie,"A must-visit for art lovers, showcasing Monet's Water Lilies in a serene setting.",musee_de_lorangerie.png,6,8,10,9,6,6,8,7,4,4,48.84287687009457,2.267629778394305
+Musée Picasso,"Housed in a stunning hôtel particulier, this museum is dedicated to the works of Pablo Picasso.",musee_picasso.png,7,8,10,8,7,6,8,7,4,1,48.813547406422245,2.327606866073117
+Cité de l'Architecture et du Patrimoine,"A museum focusing on French architecture and heritage, offering a fascinating journey through time.",cite_de_larchitecture.png,7,7,10,8,6,6,8,7,4,2,48.8298282325956,2.269810215951773
+Institut du Monde Arabe,"A cultural hub dedicated to Arab culture, with exhibitions, concerts, and a rooftop view of Paris.",institut_du_monde_arabe.png,7,7,9,7,6,6,8,7,3,3,48.85699649107013,2.357528952178889
+Musée Jacquemart-André,A stunning museum featuring a collection of classical art and period furniture in a 19th-century mansion.,musee_jacquemart_andre.png,7,8,10,8,6,6,8,7,4,3,48.85908727612482,2.309408955421094
+Musée du Quai Branly,"A museum dedicated to the art and culture of Africa, Asia, Oceania, and the Americas.",musee_du_quai_branly.png,7,8,10,9,7,7,8,7,5,4,48.85743252488496,2.3348131967787764
+Maison de Balzac,"Visit the former residence of writer Honoré de Balzac, now a museum showcasing his life and work.",maison_de_balzac.png,6,7,9,7,5,5,8,6,3,1,48.86532008198572,2.277491975432112
+Petit Palais,Explore fine arts collections in this beautiful building that also offers free exhibitions.,petit_palais.png,8,9,10,9,7,6,8,7,4,2,48.86521032700017,2.2717271639015064
+Grand Palais,"A magnificent exhibition hall hosting art exhibitions, fashion shows, and cultural events.",grand_palais.png,7,8,10,9,6,7,8,7,5,2,48.84314184354339,2.323208442097344
+Panthéon,"A mausoleum containing the remains of distinguished French citizens, with a fascinating history.",pantheon.png,6,9,10,8,6,7,7,7,4,4,48.88965465958511,2.303341910677493
+Théâtre des Champs-Élysées,Attend a concert or opera in one of Paris' most prestigious and culturally rich venues.,theatre_des_champs_elysees.png,6,7,9,8,5,6,9,7,5,2,48.83675618700479,2.391064791787922
+Musée de Cluny,"A museum of medieval history and art, featuring stunning tapestries and architectural relics.",musee_de_cluny.png,7,8,10,9,6,6,8,7,4,2,48.84358649252656,2.364798788071045
+Maison Européenne de la Photographie,"A museum dedicated to contemporary photography, hosting regular exhibitions and cultural events.",maison_europeenne_de_la_photographie.png,7,7,9,8,5,5,8,7,3,4,48.88919233550157,2.362299542977582
+Palais de Tokyo,"A contemporary art center showcasing cutting-edge exhibitions in a vast, modern space.",palais_de_tokyo.png,6,8,10,8,6,6,8,7,5,3,48.88061939890461,2.38555796096189
+Musée Guimet,"A museum dedicated to Asian art, featuring a vast collection of sculptures, paintings, and artifacts.",musee_guimet.png,7,8,10,8,7,6,8,7,4,4,48.87038885835403,2.2625133653163028
+Opéra Bastille,"Attend an opera or ballet performance in this modern theater, known for its impressive architecture.",opera_bastille.png,6,8,10,9,5,7,9,7,5,4,48.81002268873123,2.332828870488361
+Musée Nissim de Camondo,"Explore this luxurious mansion turned museum, showcasing French decorative arts from the 18th century.",musee_nissim_de_camondo.png,7,7,10,8,6,5,8,7,4,3,48.89194826137447,2.3376714103433653
+La Philharmonie de Paris,Attend a classical music concert in this state-of-the-art venue designed by architect Jean Nouvel.,philharmonie_de_paris.png,7,8,10,9,5,6,8,7,5,3,48.87142412995491,2.3942904567820844
+Musée Bourdelle,"Discover the works of sculptor Antoine Bourdelle in his former studio, now a museum with a garden.",musee_bourdelle.png,7,7,10,8,6,5,8,7,3,4,48.899884700656784,2.2938221290188823
+Musée Marmottan Monet,"A museum housing the world's largest collection of Claude Monet's works, including 'Impression, Sunrise.'",musee_marmottan_monet.png,6,8,10,9,6,6,8,7,4,1,48.8149448304658,2.286124316987317
+Musée de la Vie Romantique,"A museum dedicated to the Romantic era, set in a charming house with a garden and café.",musee_de_la_vie_romantique.png,7,7,9,7,6,5,9,7,3,3,48.88681260573682,2.2650440913398247
+Centre Pompidou,"Explore one of the largest museums of modern art in Europe, known for its unique architecture.",centre_pompidou.png,6,9,10,9,7,7,8,8,5,4,48.81624929346764,2.252464444438721
+Maison Rouge,A contemporary art museum hosting rotating exhibitions in a striking red-brick building.,maison_rouge.png,7,6,9,8,5,6,8,7,4,2,48.86155595642838,2.3894293975188283
+Théâtre du Châtelet,"Attend a performance in this historic theater, known for its varied cultural programming.",theatre_du_chatelet.png,6,8,10,8,5,6,9,7,5,1,48.81238199828494,2.3504874819886363
+La Recyclerie,"A unique café and cultural spot located in a former train station, promoting eco-friendly practices.",la_recyclerie.png,8,6,8,7,7,6,8,8,3,2,48.88480082293222,2.367772936803471
+Les Grands Voisins,"A vibrant community space with art installations, cafes, shops, and cultural activities.",les_grands_voisins.png,9,5,9,7,8,7,7,8,2,3,48.8807318958725,2.2922595158630923
+Promenade des Plantes,A scenic walk through the elevated green space that offers a quiet escape from the city.,promenade_des_plantes.png,9,6,7,7,7,6,9,8,3,1,48.85691007386146,2.337961524927949
+Musée de Montmartre,"A museum that captures the bohemian history of Montmartre, set in an artists' residence.",musee_de_montmartre.png,7,7,10,8,6,5,8,7,4,4,48.8407183297226,2.259593289918147
+Marché aux Puces de Saint-Ouen,"Explore one of the largest flea markets in the world, offering vintage treasures and antiques.",marche_aux_puces_de_saint_ouen.png,7,8,7,9,7,6,7,8,3,1,48.80691669954551,2.322844139390193
+Canal de l'Ourcq,"A calm canal area perfect for cycling, picnicking, or relaxing by the water.",canal_de_lourcq.png,10,7,6,6,8,7,9,9,2,3,48.86974287731446,2.396624270961667
+Jardin des Serres d'Auteuil,"A botanical garden with stunning greenhouses, showcasing rare plants and flowers.",jardin_des_serres_dauteuil.png,8,7,8,7,8,7,9,8,3,1,48.845354268267805,2.3814757867974885
+Butte Bergeyre,"A hidden, quiet hill in Paris with gardens, small streets, and an unexpected vineyard.",butte_bergeyre.png,9,5,7,6,7,6,9,8,2,4,48.87220555994704,2.3007238427755268
+La Pagode,"A historic cinema set in an exotic building, showing art-house films in an intimate setting.",la_pagode.png,7,6,9,7,5,5,9,7,3,4,48.88663823259286,2.3942355231812247
+Viaduc des Arts,"A charming arcade under the Promenade Plantée, filled with artisan workshops and boutiques.",viaduc_des_arts.png,8,7,8,7,6,6,8,8,4,1,48.89755215050029,2.2847552439706806

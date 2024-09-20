@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suggestions d'activités à Paris</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            color: #333;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .layout-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .left-section {
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .right-section {
+            width: 35%;
+            position: sticky;
+            top: 20px;
+            height: 100vh;
+        }
+
+        #filters {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: 20px;
+        }
+
+        #filters div {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        #results {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .activity-card {
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .activity-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .activity-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .activity-title {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .activity-description {
+            font-size: 1em;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .activity-details {
+            font-size: 0.9em;
+            color: #777;
+            margin-bottom: 10px;
+        }
+
+        .affinity-score {
+            font-size: 1.2em;
+            color: #007BFF;
+            margin-top: 10px;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Media query for mobile devices */
+        @media screen and (max-width: 768px) {
+            .layout-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .right-section {
+                order: -1; /* Moves the map to the top */
+                width: 100%;
+                height: 300px; /* Adjusts map height for mobile */
+                margin-bottom: 20px; /* Adds space below the map */
+            }
+
+            .left-section {
+                width: 100%; /* Takes full width on mobile */
+            }
+
+            #filters {
+                justify-content: center; /* Centers filters on mobile */
+                gap: 10px;
+                flex-wrap: wrap; /* Allows filters to wrap on smaller screens */
+            }
+
+            #results {
+                grid-template-columns: 1fr; /* Makes activity cards full width on mobile */
+            }
+
+            #map {
+                height: 100%; /* Ensures map takes full height of its container */
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Suggestions d'activités à Paris</h1>
+
+    <div class="layout-container">
+        <!-- Right column with map (will move on top for mobile) -->
+        <div class="right-section">
+            <div id="map"></div>
+        </div>
+
+        <!-- Left column with filters and results -->
+        <div class="left-section">
+            <div id="filters">
+                <div>
+                    <label for="touristique">Touristique (1 à 5): <span id="touristique_value">3</span></label>
+                    <input type="range" id="touristique" name="touristique" min="1" max="5" value="3" oninput="updateCriteria()">
+                </div>
+                <div>
+                    <label for="culturel">Culturel (1 à 5): <span id="culturel_value">3</span></label>
+                    <input type="range" id="culturel" name="culturel" min="1" max="5" value="3" oninput="updateCriteria()">
+                </div>
+                <div>
+                    <label for="chill">Chill (1 à 5): <span id="chill_value">3</span></label>
+                    <input type="range" id="chill" name="chill" min="1" max="5" value="3" oninput="updateCriteria()">
+                </div>
+            </div>
+
+            <div id="results">
+                <!-- Activities will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        // Initialize the map
+        const map = L.map('map').setView([48.8566, 2.3522], 12); // Default to Paris
+
+        // Fetch the API key from Flask
+        fetch('/api/key')
+            .then(response => response.json())
+            .then(data => {
+                // Use the API key in the tile layer
+                L.tileLayer(`https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=${data.apiKey}`, {
+                    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                    maxZoom: 18,
+                    tileSize: 512,
+                    zoomOffset: -1
+                }).addTo(map);
+            })
+            .catch(error => {
+                console.error('Erreur lors de la récupération de la clé API :', error);
+            });
+
+        let currentMarker = null;
+
+        // Function to show a marker on the map
+        function showOnMap(latitude, longitude, name) {
+            if (currentMarker) {
+                map.removeLayer(currentMarker);
+            }
+            currentMarker = L.marker([latitude, longitude]).addTo(map)
+                .bindPopup(`<strong>${name}</strong>`)
+                .openPopup();
+            map.setView([latitude, longitude], 12); // Adjust zoom level as needed
+        }
+
+        // Function to send an AJAX request to update the activities
+        function updateCriteria() {
+            const touristique = document.getElementById('touristique').value;
+            const culturel = document.getElementById('culturel').value;
+            const chill = document.getElementById('chill').value;
+
+            document.getElementById('touristique_value').innerText = touristique;
+            document.getElementById('culturel_value').innerText = culturel;
+            document.getElementById('chill_value').innerText = chill;
+
+            fetch('/update_activities', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ touristique, culturel, chill })
+            })
+            .then(response => response.json())
+            .then(data => {
+                displayActivities(data.activities);
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        // Function to display activities
+        function displayActivities(activities) {
+            const resultsContainer = document.getElementById('results');
+            resultsContainer.innerHTML = ''; // Clear current activities
+
+            activities.forEach(activity => {
+                const card = document.createElement('div');
+                card.className = 'activity-card';
+                card.onclick = () => showOnMap(activity.latitude, activity.longitude, activity.name);
+
+                card.innerHTML = `
+                    <img src="${activity.image_url}" alt="${activity.name}" class="activity-image">
+                    <div class="activity-content">
+                        <h3 class="activity-title">${activity.name}</h3>
+                        <p class="activity-description">${activity.description}</p>
+                        <div class="activity-details">
+                            <p>🌟 <strong>Score de matching:</strong> ${activity.affinity_score || 'Non disponible'}/100</p>
+                            <p>🏙️ <strong>Touristique:</strong> ${activity.touristic_score}/10</p>
+                            <p>🎨 <strong>Culturel:</strong> ${activity.cultural_score}/10</p>
+                            <p>😌 <strong>Chill:</strong> ${activity.chill_score}/10</p>
+                        </div>
+                    </div>
+                `;
+                resultsContainer.appendChild(card);
+            });
+        }
+
+        // Initial load of activities
+        updateCriteria(); // Automatically calls to load activities based on initial slider values
+    </script>
+</body>
+</html>
+
