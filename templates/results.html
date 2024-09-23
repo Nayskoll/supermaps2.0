@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
+        /* Default styles for larger screens (desktop view) */
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
@@ -25,7 +26,7 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
         }
 
         .left-section {
@@ -114,52 +115,122 @@
 
         #map {
             width: 100%;
-            height: 100%;
+            height: 70vh;
         }
 
-        /* Media query for mobile devices */
+        /* Wishlist block styles */
+        .wishlist-block {
+            background-color: #f5f5f5;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            max-height: 250px;
+            overflow-y: auto;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .wishlist-item {
+            background-color: #f2e0d4;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .wishlist-item p {
+            margin: 0;
+            font-size: 1em;
+            font-weight: bold;
+        }
+
+        .remove-wishlist-btn {
+            background-color: #ff6347;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .activity-card.wishlist-added {
+            background-color: #f2e0d4;
+            border: 1px solid #c15a37;
+        }
+
+        .add-to-wishlist-btn {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
         @media screen and (max-width: 768px) {
+            body, html {
+                margin: 0;
+                padding: 0;
+                overflow-x: hidden;
+            }
+
+            h1 {
+                font-size: 1.2em;
+                text-align: center;
+                margin: 0;
+                padding: 10px 0;
+                background-color: #f0f0f0;
+                color: #333;
+                z-index: 20;
+            }
+
             .layout-container {
                 flex-direction: column;
                 align-items: center;
+                padding: 0 10px;
             }
 
             .right-section {
-                order: -1; /* Moves the map to the top */
                 width: 100%;
-                height: 300px; /* Adjusts map height for mobile */
-                margin-bottom: 20px; /* Adds space below the map */
+                height: 300px;
+                margin-bottom: 20px;
+                position: relative;
+                z-index: 10;
             }
 
             .left-section {
-                width: 100%; /* Takes full width on mobile */
+                width: 100%;
+                margin-top: 10px;
             }
 
             #filters {
-                justify-content: center; /* Centers filters on mobile */
+                justify-content: center;
                 gap: 10px;
-                flex-wrap: wrap; /* Allows filters to wrap on smaller screens */
+                flex-wrap: wrap;
+                padding: 10px;
             }
 
             #results {
-                grid-template-columns: 1fr; /* Makes activity cards full width on mobile */
+                grid-template-columns: 1fr;
+                padding: 10px;
             }
 
             #map {
-                height: 100%; /* Ensures map takes full height of its container */
+                height: 100%;
+                margin: 0;
+                padding: 0;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Title -->
     <h1>Suggestions d'activités à Paris</h1>
 
+    <!-- Map and Wishlist -->
     <div class="layout-container">
-        <!-- Right column with map (will move on top for mobile) -->
-        <div class="right-section">
-            <div id="map"></div>
-        </div>
-
         <!-- Left column with filters and results -->
         <div class="left-section">
             <div id="filters">
@@ -181,20 +252,35 @@
                 <!-- Activities will be dynamically inserted here -->
             </div>
         </div>
+
+        <!-- Right column with the map -->
+        <div class="right-section">
+            <div id="map"></div>
+
+            <!-- Wishlist Block Positioned Just Below the Map -->
+            <div class="wishlist-block" id="wishlist-block">
+                <h3>Wishlist</h3>
+                <div id="wishlist-items">
+                    <!-- Wishlist items will be dynamically inserted here -->
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
+        const wishlistMarkers = {};
+        const wishlistItems = {}; // Object to store wishlist items by name
+
         // Initialize the map
-        const map = L.map('map').setView([48.8566, 2.3522], 12); // Default to Paris
+        const map = L.map('map').setView([48.8566, 2.3522], 12);
 
         // Fetch the API key from Flask
         fetch('/api/key')
             .then(response => response.json())
             .then(data => {
-                // Use the API key in the tile layer
                 L.tileLayer(`https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=${data.apiKey}`, {
-                    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                    attribution: 'Map data &copy; OpenStreetMap contributors, Imagery © Mapbox',
                     maxZoom: 18,
                     tileSize: 512,
                     zoomOffset: -1
@@ -214,10 +300,98 @@
             currentMarker = L.marker([latitude, longitude]).addTo(map)
                 .bindPopup(`<strong>${name}</strong>`)
                 .openPopup();
-            map.setView([latitude, longitude], 12); // Adjust zoom level as needed
+            map.setView([latitude, longitude], 12);
         }
 
-        // Function to send an AJAX request to update the activities
+        // Function to update activities and display them
+        function displayActivities(activities) {
+            const resultsContainer = document.getElementById('results');
+            resultsContainer.innerHTML = ''; 
+
+            activities.forEach(activity => {
+                const card = document.createElement('div');
+                card.className = 'activity-card';
+                card.onclick = () => showOnMap(activity.latitude, activity.longitude, activity.name);
+                
+                const buttonText = wishlistItems[activity.name] ? "Retirer de la wishlist" : "Ajouter à la wishlist";
+                
+                card.innerHTML = `
+                    <img src="${activity.image_url}" alt="${activity.name}" class="activity-image">
+                    <div class="activity-content">
+                        <h3 class="activity-title">${activity.name}</h3>
+                        <p class="activity-description">${activity.description}</p>
+                        <div class="activity-details">
+                            <p>🌟 Score de matching: ${activity.affinity_score || 'Non disponible'}/100</p>
+                            <p>🏙️ Touristique: ${activity.touristic_score}/10</p>
+                            <p>🎨 Culturel: ${activity.cultural_score}/10</p>
+                            <p>😌 Chill: ${activity.chill_score}/10</p>
+                        </div>
+                        <button class="add-to-wishlist-btn" onclick="toggleWishlist(${activity.latitude}, ${activity.longitude}, '${activity.name}', this)">${buttonText}</button>
+                    </div>
+                `;
+                resultsContainer.appendChild(card);
+            });
+        }
+
+        // Function to toggle activity in wishlist
+        function toggleWishlist(lat, lon, name, button) {
+            if (wishlistItems[name]) {
+                // If the item is in the wishlist, remove it
+                removeFromWishlist(name, lat, lon, button);
+            } else {
+                // If the item is not in the wishlist, add it
+                addToWishlist(lat, lon, name, button);
+            }
+        }
+
+        // Function to add activity to wishlist
+        function addToWishlist(lat, lon, name, button) {
+            const wishlistBlock = document.getElementById('wishlist-items');
+            const card = button.parentElement.parentElement;
+
+            card.classList.add('wishlist-added');
+            button.textContent = "Retirer de la wishlist";
+
+            const wishlistItem = document.createElement('div');
+            wishlistItem.className = 'wishlist-item';
+            wishlistItem.innerHTML = `
+                <p>${name}</p>
+                <button class="remove-wishlist-btn" onclick="removeFromWishlist('${name}', ${lat}, ${lon}, this)">Supprimer</button>
+            `;
+            wishlistBlock.appendChild(wishlistItem);
+
+            const marker = L.marker([lat, lon])
+                .addTo(map)
+                .bindPopup(`
+                    📍 <strong>${name}</strong><br>
+                    <button onclick="removeFromWishlist('${name}', ${lat}, ${lon})">Supprimer de la liste</button>
+                `);
+            wishlistMarkers[name] = marker;
+            wishlistItems[name] = true;
+        }
+
+        // Function to remove from wishlist
+        function removeFromWishlist(name, lat, lon, button) {
+            map.removeLayer(wishlistMarkers[name]);
+            delete wishlistMarkers[name];
+            delete wishlistItems[name];
+
+            // Remove from wishlist block if present
+            if (button && button.parentElement.className === "wishlist-item") {
+                button.parentElement.remove();
+            }
+
+            // Reset the state of the card in the results section
+            document.querySelectorAll('.activity-card').forEach(card => {
+                if (card.querySelector('h3').textContent === name) {
+                    card.classList.remove('wishlist-added');
+                    const btn = card.querySelector('.add-to-wishlist-btn');
+                    btn.textContent = "Ajouter à la wishlist";
+                }
+            });
+        }
+
+        // Function to fetch and display real activities from the server
         function updateCriteria() {
             const touristique = document.getElementById('touristique').value;
             const culturel = document.getElementById('culturel').value;
@@ -241,36 +415,7 @@
             .catch(error => console.error('Error:', error));
         }
 
-        // Function to display activities
-        function displayActivities(activities) {
-            const resultsContainer = document.getElementById('results');
-            resultsContainer.innerHTML = ''; // Clear current activities
-
-            activities.forEach(activity => {
-                const card = document.createElement('div');
-                card.className = 'activity-card';
-                card.onclick = () => showOnMap(activity.latitude, activity.longitude, activity.name);
-
-                card.innerHTML = `
-                    <img src="${activity.image_url}" alt="${activity.name}" class="activity-image">
-                    <div class="activity-content">
-                        <h3 class="activity-title">${activity.name}</h3>
-                        <p class="activity-description">${activity.description}</p>
-                        <div class="activity-details">
-                            <p>🌟 <strong>Score de matching:</strong> ${activity.affinity_score || 'Non disponible'}/100</p>
-                            <p>🏙️ <strong>Touristique:</strong> ${activity.touristic_score}/10</p>
-                            <p>🎨 <strong>Culturel:</strong> ${activity.cultural_score}/10</p>
-                            <p>😌 <strong>Chill:</strong> ${activity.chill_score}/10</p>
-                        </div>
-                    </div>
-                `;
-                resultsContainer.appendChild(card);
-            });
-        }
-
-        // Initial load of activities
-        updateCriteria(); // Automatically calls to load activities based on initial slider values
+        updateCriteria();
     </script>
 </body>
 </html>
-
