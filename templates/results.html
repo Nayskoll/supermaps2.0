@@ -275,6 +275,13 @@
         // Initialize the map
         const map = L.map('map').setView([48.8566, 2.3522], 12);
 
+        const terracottaIcon = L.icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-orange.png', // Remplace cette URL par une image de pin terracotta si nécessaire
+            iconSize: [25, 41], // Taille de l'icône
+            iconAnchor: [12, 41], // Point d'ancrage de l'icône
+            popupAnchor: [0, -41] // Ancre du popup
+        });
+
         // Fetch the API key from Flask
         fetch('/api/key')
             .then(response => response.json())
@@ -292,15 +299,21 @@
 
         let currentMarker = null;
 
-        // Function to show a marker on the map
+        // Function to show the popup on the map without adding a marker
         function showOnMap(latitude, longitude, name) {
+            // Remove the current marker if one exists (this avoids superposition)
             if (currentMarker) {
                 map.removeLayer(currentMarker);
             }
-            currentMarker = L.marker([latitude, longitude]).addTo(map)
-                .bindPopup(`<strong>${name}</strong>`)
-                .openPopup();
-            map.setView([latitude, longitude], 12);
+
+            // Center the map on the clicked location and open a popup (infobulle)
+            map.setView([latitude, longitude], 12); // Adjust the zoom level as needed
+
+            // Open a popup at the specified coordinates with the name
+            L.popup()
+                .setLatLng([latitude, longitude])
+                .setContent(`<strong>${name}</strong>`)
+                .openOn(map);
         }
 
         // Function to update activities and display them
@@ -349,6 +362,9 @@
             const wishlistBlock = document.getElementById('wishlist-items');
             const card = button.parentElement.parentElement;
 
+            // Fermer l'infobulle active si elle est ouverte
+            map.closePopup();
+
             card.classList.add('wishlist-added');
             button.textContent = "Retirer de la wishlist";
 
@@ -360,7 +376,7 @@
             `;
             wishlistBlock.appendChild(wishlistItem);
 
-            const marker = L.marker([lat, lon])
+            const marker = L.marker([lat, lon], { icon: terracottaIcon }) // Use the terracotta pin here
                 .addTo(map)
                 .bindPopup(`
                     📍 <strong>${name}</strong><br>
