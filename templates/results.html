@@ -309,6 +309,9 @@
                 <div>
                     <label for="chill">Chill (1 à 5): <span id="chill_value">3</span></label>
                     <input type="range" id="chill" name="chill" min="1" max="5" value="3" oninput="updateCriteria()">
+                </div>                <div></div>
+                    <label for="popularity">Popularity (1 à 5): <span id="popularity_value">5</span></label>
+                    <input type="range" id="popularity" name="popularity" min="1" max="5" value="5" oninput="updateCriteria()">
                 </div>
             </div>
 
@@ -411,6 +414,8 @@
                             <p>🏙️ Touristique: ${activity.touristic_score}/10</p>
                             <p>🎨 Culturel: ${activity.cultural_score}/10</p>
                             <p>😌 Chill: ${activity.chill_score}/10</p>
+                            <p>📸 Popularity: ${activity.popularity_score}/10</p>
+
                         </div>
                         <button class="add-to-wishlist-btn" onclick="toggleWishlist(${activity.latitude}, ${activity.longitude}, '${activity.name}', this)">${buttonText}</button>
                         <!-- Ajout du bouton "En savoir plus" -->
@@ -499,17 +504,20 @@
             const touristique = document.getElementById('touristique').value;
             const culturel = document.getElementById('culturel').value;
             const chill = document.getElementById('chill').value;
+            const popularity = document.getElementById('popularity').value;
+
 
             document.getElementById('touristique_value').innerText = touristique;
             document.getElementById('culturel_value').innerText = culturel;
             document.getElementById('chill_value').innerText = chill;
+            document.getElementById('popularity_value').innerText = popularity;
 
             fetch('/update_activities', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ touristique, culturel, chill })
+                body: JSON.stringify({ touristique, culturel, chill, popularity })
             })
             .then(response => response.json())
             .then(data => {

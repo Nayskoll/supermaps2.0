@@ -1,115 +1,115 @@
-slug,popularity_score
-tour-eiffel,10
-louvre-museum,10
-seine-river-cruise,8
-notre-dame-cathedral,9
-montmartre-walking-tour,8
-champs-elysees,9
-palace-of-versailles,9
-arc-de-triomphe,8
-sainte-chapelle,8
-moulin-rouge-show-1,8
-paris-catacombs-1,7
-musee-dorsay-1,9
-sacre-coeur-basilica-1,9
-moulin-rouge-show-2,8
-paris-catacombs-2,7
-musee-dorsay-2,9
-sacre-coeur-basilica-2,9
-opera-garnier-tour,7
-jardin-des-tuileries,8
-versailles-gardens,8
-pont-alexandre-iii,7
-luxembourg-gardens,8
-galeries-lafayette-rooftop,7
-disneyland-paris,10
-canal-saint-martin,7
-bois-de-boulogne,7
-jardin-des-plantes,7
-coulee-verte-rene-dumont,6
-ile-saint-louis,7
-buttes-chaumont-park,7
-la-recyclerie,6
-square-du-vert-galant,6
-marche-des-enfants-rouges,7
-parc-de-la-villette,7
-parc-monceau,7
-promenade-plantee,6
-place-des-vosges,8
-canal-de-lourcq,6
-la-campagne-a-paris-1,5
-belleville-park,6
-jardin-dacclimatation,7
-bois-de-vincennes,7
-rue-cremieux,6
-square-des-batignolles,6
-rue-mouffetard-market,6
-butte-bergeyre-1,5
-musee-de-la-chasse-et-de-la-nature,6
-villa-leandre,5
-parc-georges-brassens,6
-jardin-catherine-laboure,5
-la-campagne-a-paris-2,5
-square-des-peupliers,5
-hopital-saint-louis-courtyard,5
-promenade-dora-maar,5
-parc-de-belleville,6
-square-du-temple,5
-la-petite-ceinture,5
-parc-de-la-butte-du-chapeau-rouge,5
-passage-brady,5
-jardin-du-palais-royal,6
-square-rene-viviani,5
-quai-de-jemmapes,6
-musee-zadkine,5
-parc-de-bercy,6
-parc-andre-citroen,6
-beaugrenelle-shopping-mall,5
-les-halles-forum,6
-bowling-mouffetard,5
-batignolles-square,5
-place-du-marche-saint-honore,5
-aquaboulevard,6
-paris-kart-indoor,5
-escape-hunt,5
-petanque-at-place-dauphine,5
-musee-rodin,8
-musee-dorsay-3,9
-bibliotheque-sainte-genevieve,6
-musee-carnavalet,7
-palais-garnier,8
-maison-de-victor-hugo,6
-musee-de-lorangerie,7
-musee-picasso,7
-cite-de-larchitecture,6
-institut-du-monde-arabe,6
-musee-jacquemart-andre,6
-musee-du-quai-branly,7
-maison-de-balzac,6
-petit-palais,8
-grand-palais,8
-pantheon,8
-theatre-des-champs-elysees,6
-musee-de-cluny,7
-maison-europeenne-de-la-photographie,6
-palais-de-tokyo,7
-musee-guimet,7
-opera-bastille,7
-musee-nissim-de-camondo,6
-la-philharmonie-de-paris,7
-musee-bourdelle,6
-musee-marmottan-monet,7
-musee-de-la-vie-romantique,6
-centre-pompidou,8
-maison-rouge,6
-theatre-du-chatelet,6
-la-recyclerie-2,6
-les-grands-voisins,5
-promenade-des-plantes,6
-musee-de-montmartre,7
-marche-aux-puces-de-saint-ouen,6
-canal-de-lourcq-2,6
-jardin-des-serres-dauteuil,6
-butte-bergeyre-2,5
-la-pagode,5
-viaduc-des-arts,6
+name,popularity_score
+Tour Eiffel,10
+Louvre Museum,10
+Seine River Cruise,8
+Notre-Dame Cathedral,9
+Montmartre Walking Tour,8
+Champs-Élysées,9
+Palace of Versailles,9
+Arc de Triomphe,8
+Sainte-Chapelle,8
+Moulin Rouge Show,8
+Paris Catacombs,7
+Musée d'Orsay,9
+Sacré-Cœur Basilica,9
+Moulin Rouge Show,8
+Paris Catacombs,7
+Musée d'Orsay,9
+Sacré-Cœur Basilica,9
+Opéra Garnier Tour,7
+Jardin des Tuileries,8
+Versailles Gardens,8
+Pont Alexandre III,7
+Luxembourg Gardens,8
+Galeries Lafayette Rooftop,7
+Disneyland Paris,10
+Canal Saint-Martin,7
+Bois de Boulogne,7
+Jardin des Plantes,7
+Coulée Verte René-Dumont,6
+Île Saint-Louis,7
+Buttes-Chaumont Park,7
+La Recyclerie,6
+Square du Vert-Galant,6
+Marché des Enfants Rouges,7
+Parc de la Villette,7
+Parc Monceau,7
+Promenade Plantée,6
+Place des Vosges,8
+Canal de l'Ourcq,6
+La Campagne à Paris,5
+Belleville Park,6
+Jardin d'Acclimatation,7
+Bois de Vincennes,7
+Rue Crémieux,6
+Square des Batignolles,6
+Rue Mouffetard Market,6
+Butte Bergeyre,5
+Musée de la Chasse et de la Nature,6
+Villa Léandre,5
+Parc Georges-Brassens,6
+Jardin Catherine-Labouré,5
+La Campagne à Paris,5
+Square des Peupliers,5
+Hôpital Saint-Louis Courtyard,5
+Promenade Dora Maar,5
+Parc de Belleville,6
+Square du Temple,5
+La Petite Ceinture,5
+Parc de la Butte-du-Chapeau-Rouge,5
+Passage Brady,5
+Jardin du Palais Royal,6
+Square René Viviani,5
+Quai de Jemmapes,6
+Musée Zadkine,5
+Parc de Bercy,6
+Parc André Citroën,6
+Beaugrenelle Shopping Mall,5
+Les Halles Forum,6
+Bowling Mouffetard,5
+Batignolles Square,5
+Place du Marché Saint-Honoré,5
+Aquaboulevard,6
+Paris Kart Indoor,5
+Escape Hunt,5
+Pétanque at Place Dauphine,5
+Musée Rodin,8
+Musée d'Orsay,9
+Bibliothèque Sainte-Geneviève,6
+Musée Carnavalet,7
+Palais Garnier,8
+Maison de Victor Hugo,6
+Musée de l'Orangerie,7
+Musée Picasso,7
+Cité de l'Architecture et du Patrimoine,6
+Institut du Monde Arabe,6
+Musée Jacquemart-André,6
+Musée du Quai Branly,7
+Maison de Balzac,6
+Petit Palais,8
+Grand Palais,8
+Panthéon,8
+Théâtre des Champs-Élysées,6
+Musée de Cluny,7
+Maison Européenne de la Photographie,6
+Palais de Tokyo,7
+Musée Guimet,7
+Opéra Bastille,7
+Musée Nissim de Camondo,6
+La Philharmonie de Paris,7
+Musée Bourdelle,6
+Musée Marmottan Monet,7
+Musée de la Vie Romantique,6
+Centre Pompidou,8
+Maison Rouge,6
+Théâtre du Châtelet,6
+La Recyclerie,6
+Les Grands Voisins,5
+Promenade des Plantes,6
+Musée de Montmartre,7
+Marché aux Puces de Saint-Ouen,6
+Canal de l'Ourcq,6
+Jardin des Serres d'Auteuil,6
+Butte Bergeyre,5
+La Pagode,5
+Viaduc des Arts,6

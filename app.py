@@ -4,6 +4,7 @@ import json
 from dotenv import load_dotenv
 import os
 
+
 app = Flask(__name__)
 
 load_dotenv()  
@@ -12,30 +13,40 @@ load_dotenv()
 csv_file = 'paris_activities_high_touristic.csv'
 df = pd.read_csv(csv_file)
 
-def calculate_matching_score(row, touristique, culturel, chill):
+
+# Afficher les lignes avec des valeurs manquantes dans les scores
+missing_values = df[df[['touristic_score', 'cultural_score', 'chill_score', 'popularity_score']].isnull().any(axis=1)]
+print("Activités avec des valeurs manquantes :", missing_values)
+
+
+def calculate_matching_score(row, touristique, culturel, chill, popularity):
     # Normalize user inputs (1-5 scale) to match activity scores (1-10 scale)
     touristique_normalized = int(touristique) * 2  # Convert to 1-10 scale
-    culturel_normalized = int(culturel) * 2  # Convert to 1-10 scale
-    chill_normalized = int(chill) * 2  # Convert to 1-10 scale
+    culturel_normalized = int(culturel) * 2        # Convert to 1-10 scale
+    chill_normalized = int(chill) * 2              # Convert to 1-10 scale
+    popularity_normalized = int(popularity) * 2    # Convert to 1-10 scale
 
     # Calculate custom weights using a quadratic function to emphasize extreme values (1 or 5)
-    touristic_weight = ((int(touristique) - 3) ** 2) / 4  # Results in higher weight for 1 and 5
+    touristic_weight = ((int(touristique) - 3) ** 2) / 4
     cultural_weight = ((int(culturel) - 3) ** 2) / 4
     chill_weight = ((int(chill) - 3) ** 2) / 4
+    popularity_weight = ((int(popularity) - 3) ** 2) / 4
 
     # Calculate differences, introduce stronger penalties for mismatched scores
     touristic_diff = abs(row['touristic_score'] - touristique_normalized)
     cultural_diff = abs(row['cultural_score'] - culturel_normalized)
     chill_diff = abs(row['chill_score'] - chill_normalized)
+    popularity_diff = abs(row['popularity_score'] - popularity_normalized)
 
     # Use exponential penalties to heavily penalize mismatches
     touristic_score = (100 - (touristic_diff ** 2)) * touristic_weight
     cultural_score = (100 - (cultural_diff ** 2)) * cultural_weight
     chill_score = (100 - (chill_diff ** 2)) * chill_weight
+    popularity_score_calculated = (100 - (popularity_diff ** 2)) * popularity_weight
 
     # Calculate total score and normalize it
-    total_score = touristic_score + cultural_score + chill_score
-    max_possible_score = (touristic_weight + cultural_weight + chill_weight) * 100
+    total_score = touristic_score + cultural_score + chill_score + popularity_score_calculated
+    max_possible_score = (touristic_weight + cultural_weight + chill_weight + popularity_weight) * 100
     normalized_score = (total_score / max_possible_score) * 100 if max_possible_score != 0 else 0
 
     # Return the rounded score
@@ -60,9 +71,11 @@ def update_activities():
     touristique = data.get('touristique')
     culturel = data.get('culturel')
     chill = data.get('chill')
+    popularity = data.get('popularity')
+
     
     # Calculate the matching score for each activity
-    df['affinity_score'] = df.apply(lambda row: calculate_matching_score(row, touristique, culturel, chill), axis=1)
+    df['affinity_score'] = df.apply(lambda row: calculate_matching_score(row, touristique, culturel, chill, popularity), axis=1)
 
     # Sort activities by affinity score in descending order (higher scores are more relevant)
     sorted_df = df.sort_values(by='affinity_score', ascending=False)
