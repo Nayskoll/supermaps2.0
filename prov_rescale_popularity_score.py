@@ -1,5 +1,4 @@
 import pandas as pd
-#from slugify import slugify
 
 csv_file = 'paris_activities_high_touristic.csv'
 df = pd.read_csv(csv_file)
