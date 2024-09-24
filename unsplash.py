@@ -52,9 +52,9 @@ df = pd.read_csv(csv_file)
 
 
 for index, row in df.iterrows():
-    if index < 10:
-        pass  # Arrête la boucle lorsque l'index atteint 40
-    if index > 40:
+    if index < 40:
+        pass
+    if index > 90:
         break  # Arrête la boucle lorsque l'index atteint 40
     query = row['name']  # Utilise le nom de l'activité comme requête
     new_url = get_unsplash_image(query)  # Obtient une nouvelle URL d'image
