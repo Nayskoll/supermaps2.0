@@ -3,8 +3,6 @@ import pandas as pd
 import json
 from dotenv import load_dotenv
 import os
-from slugify import slugify
-
 
 app = Flask(__name__)
 
