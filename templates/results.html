@@ -446,13 +446,15 @@
 
             const wishlistItem = document.createElement('div');
             wishlistItem.className = 'wishlist-item';
+            wishlistItem.setAttribute('data-name', name); // Ajout de l'attribut data-name
             wishlistItem.innerHTML = `
                 <p>${name}</p>
                 <button class="remove-wishlist-btn" onclick="removeFromWishlist('${name}', ${lat}, ${lon}, this)">Supprimer</button>
             `;
             wishlistBlock.appendChild(wishlistItem);
 
-            const marker = L.marker([lat, lon], { icon: terracottaIcon }) // Use the terracotta pin here
+            // Ajouter le marqueur sur la carte
+            const marker = L.marker([lat, lon], { icon: terracottaIcon }) // Utilisez l'icône terracotta ici
                 .addTo(map)
                 .bindPopup(`
                     📍 <strong>${name}</strong><br>
@@ -462,20 +464,29 @@
             wishlistItems[name] = true;
         }
 
-        // Function to remove from wishlist
+        // Fonction pour supprimer un élément de la wishlist
         function removeFromWishlist(name, lat, lon, button) {
-            map.removeLayer(wishlistMarkers[name]);
-            delete wishlistMarkers[name];
+            // Supprimer le marqueur de la carte
+            if (wishlistMarkers[name]) {
+                map.removeLayer(wishlistMarkers[name]);
+                delete wishlistMarkers[name];
+            }
+            // Supprimer l'élément de la liste des items de la wishlist
             delete wishlistItems[name];
 
-            // Remove from wishlist block if present
-            if (button && button.parentElement.className === "wishlist-item") {
-                button.parentElement.remove();
+            // Supprimer l'élément du bloc wishlist
+            const wishlistBlock = document.getElementById('wishlist-items');
+            const items = wishlistBlock.getElementsByClassName('wishlist-item');
+            for (let i = items.length - 1; i >= 0; i--) {
+                const item = items[i];
+                if (item.getAttribute('data-name') === name) {
+                    wishlistBlock.removeChild(item);
+                }
             }
 
-            // Reset the state of the card in the results section
+            // Mettre à jour le bouton sur la carte d'activité
             document.querySelectorAll('.activity-card').forEach(card => {
-                if (card.querySelector('h3').textContent === name) {
+                if (card.querySelector('.activity-title').textContent === name) {
                     card.classList.remove('wishlist-added');
                     const btn = card.querySelector('.add-to-wishlist-btn');
                     btn.textContent = "Ajouter à la wishlist";
