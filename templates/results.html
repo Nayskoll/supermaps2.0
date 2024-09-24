@@ -4,15 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suggestions d'activités à Paris</title>
-    <!-- Leaflet CSS -->
+    <!-- Feuille de style Leaflet -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    <!-- Google Fonts -->
+    <!-- Police Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome for the wishlist icon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Font Awesome pour l'icône de panier -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <style>
-        /* General Styles */
+        /* Styles généraux */
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
@@ -25,13 +27,13 @@
             margin: 20px;
         }
 
-        /* Layout Container */
+        /* Conteneur principal */
         .layout-container {
             display: flex;
             flex-direction: row;
         }
 
-        /* Left Section */
+        /* Section gauche */
         .left-section {
             width: 75%;
             overflow-y: auto;
@@ -40,7 +42,7 @@
             box-sizing: border-box;
         }
 
-        /* Right Section (Map) */
+        /* Section droite (Carte) */
         .right-section {
             width: 25%;
             position: sticky;
@@ -54,7 +56,7 @@
             height: 100%;
         }
 
-        /* Filters */
+        /* Filtres */
         #filters {
             display: flex;
             gap: 20px;
@@ -72,7 +74,13 @@
             margin-bottom: 5px;
         }
 
-        /* Results */
+        /* Réduction de la taille des sliders */
+        #filters input[type="range"] {
+            width: 80%;
+            max-width: 200px;
+        }
+
+        /* Résultats */
         #results {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -134,7 +142,7 @@
             margin-top: 10px;
         }
 
-        /* Wishlist Icon */
+        /* Icône de la wishlist */
         #wishlist-icon {
             position: fixed;
             top: 20px;
@@ -144,7 +152,7 @@
             padding: 10px;
             border-radius: 50%;
             cursor: pointer;
-            z-index: 1000;
+            z-index: 1001; /* Assurez-vous qu'il est au-dessus de la carte */
         }
 
         #wishlist-icon i {
@@ -162,7 +170,7 @@
             font-size: 0.8em;
         }
 
-        /* Wishlist Drawer */
+        /* Fenêtre dépliante de la wishlist */
         #wishlist-drawer {
             position: fixed;
             right: -300px;
@@ -172,7 +180,7 @@
             background-color: #fff;
             box-shadow: -2px 0 5px rgba(0,0,0,0.3);
             transition: right 0.3s ease;
-            z-index: 999;
+            z-index: 1000;
             overflow-y: auto;
         }
 
@@ -216,13 +224,13 @@
             border-radius: 5px;
         }
 
-        /* Activity Card when added to wishlist */
+        /* Carte d'activité ajoutée à la wishlist */
         .activity-card.wishlist-added {
             background-color: #f2e0d4;
             border: 1px solid #c15a37;
         }
 
-        /* Popup Styles */
+        /* Styles pour la pop-up */
         .popup-overlay {
             position: fixed;
             top: 0;
@@ -259,7 +267,7 @@
             cursor: pointer;
         }
 
-        /* Mobile Styles */
+        /* Styles pour les appareils mobiles */
         @media screen and (max-width: 768px) {
             .layout-container {
                 flex-direction: column;
@@ -269,65 +277,89 @@
                 width: 100%;
                 height: auto;
                 padding: 10px;
+                margin-top: 190px; /* Ajuster pour éviter le chevauchement avec la carte */
             }
 
             .right-section {
                 width: 100%;
-                height: 200px;
+                height: 180px;
                 position: fixed;
                 top: 0;
                 left: 0;
             }
 
             #map {
-                height: 200px;
+                height: 180px;
             }
 
-            .left-section {
-                margin-top: 220px; /* To avoid overlapping with the fixed map */
+            /* Positionnement de l'icône de la wishlist en haut à droite */
+            #wishlist-icon {
+                top: 20px;
+                right: 20px;
+                z-index: 1001;
             }
 
+            /* Ajustement des filtres */
             #filters {
                 flex-direction: column;
                 align-items: center;
+                padding: 5px;
+                margin-top: 10px;
             }
 
             #filters div {
                 flex: none;
                 width: 100%;
                 max-width: 300px;
+                margin-bottom: 5px; /* Réduire l'espace entre les sliders */
             }
 
-            #wishlist-icon {
-                top: 230px; /* Adjust position below the map */
-                right: 20px;
+            /* Réduction de la taille des sliders en version mobile */
+            #filters input[type="range"] {
+                width: 70%;
+                max-width: 150px;
+            }
+
+            /* Ajustement de l'espace entre les sliders et la carte */
+            .left-section {
+                margin-top: 190px; /* Ajusté en fonction de la hauteur de la carte */
+            }
+
+            /* Résultats */
+            #results {
+                grid-template-columns: 1fr;
+                padding: 10px;
+            }
+
+            .activity-card {
+                margin-bottom: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Title -->
+    <!-- Titre -->
     <h1>Suggestions d'activités à Paris</h1>
 
-    <!-- Wishlist Icon -->
+    <!-- Icône de la wishlist -->
     <div id="wishlist-icon" onclick="toggleWishlist()">
         <i class="fas fa-shopping-cart"></i>
         <span id="wishlist-count">0</span>
     </div>
 
-    <!-- Wishlist Drawer -->
+    <!-- Fenêtre dépliante de la wishlist -->
     <div id="wishlist-drawer">
         <h3>Wishlist</h3>
         <div id="wishlist-items">
-            <!-- Wishlist items will be dynamically inserted here -->
+            <!-- Les éléments de la wishlist seront insérés ici -->
         </div>
     </div>
 
-    <!-- Layout Container -->
+    <!-- Conteneur principal -->
     <div class="layout-container">
-        <!-- Left Section -->
+        <!-- Section gauche -->
         <div class="left-section">
-            <!-- Filters -->
+            <!-- Filtres -->
             <div id="filters">
                 <div>
                     <label for="touristique">Touristique (1 à 5): <span id="touristique_value">3</span></label>
@@ -347,35 +379,35 @@
                 </div>
             </div>
 
-            <!-- Results -->
+            <!-- Résultats -->
             <div id="results">
-                <!-- Activities will be dynamically inserted here -->
+                <!-- Les activités seront insérées ici dynamiquement -->
             </div>
         </div>
 
-        <!-- Right Section (Map) -->
+        <!-- Section droite (Carte) -->
         <div class="right-section">
             <div id="map"></div>
         </div>
     </div>
 
-    <!-- Popup for activity details -->
+    <!-- Pop-up pour afficher les détails du site touristique -->
     <div id="popup-overlay" class="popup-overlay" onclick="closePopup()"></div>
     <div id="popup-content" class="popup-content">
         <span class="close-btn" onclick="closePopup()">&times;</span>
         <div id="popup-inner-content">
-            <!-- Detailed content will be loaded here -->
+            <!-- Le contenu détaillé sera chargé ici -->
         </div>
     </div>
 
-    <!-- Leaflet JS -->
+    <!-- Script Leaflet -->
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <!-- Your JavaScript code -->
+    <!-- Votre script JavaScript -->
     <script>
         const wishlistMarkers = {};
         const wishlistItems = {};
 
-        // Initialize the map
+        // Initialiser la carte
         const map = L.map('map').setView([48.8566, 2.3522], 12);
 
         const terracottaIcon = L.icon({
@@ -385,7 +417,7 @@
             popupAnchor: [0, -41]
         });
 
-        // Fetch the API key from Flask
+        // Récupérer la clé API depuis Flask
         fetch('/api/key')
             .then(response => response.json())
             .then(data => {
@@ -402,24 +434,24 @@
 
         let currentMarker = null;
 
-        // Function to show the popup on the map without adding a marker
+        // Fonction pour afficher la popup sur la carte sans ajouter de marqueur
         function showOnMap(latitude, longitude, name) {
-            // Remove the current marker if one exists
+            // Supprimer le marqueur actuel s'il existe
             if (currentMarker) {
                 map.removeLayer(currentMarker);
             }
 
-            // Center the map on the clicked location and open a popup
+            // Centrer la carte sur l'emplacement cliqué et ouvrir une popup
             map.setView([latitude, longitude], 12);
 
-            // Open a popup at the specified coordinates with the name
+            // Ouvrir une popup aux coordonnées spécifiées avec le nom
             L.popup()
                 .setLatLng([latitude, longitude])
                 .setContent(`<strong>${name}</strong>`)
                 .openOn(map);
         }
 
-        // Function to update activities and display them
+        // Fonction pour afficher les activités
         function displayActivities(activities) {
             const resultsContainer = document.getElementById('results');
             resultsContainer.innerHTML = '';
@@ -429,7 +461,7 @@
                 const card = document.createElement('div');
                 card.className = 'activity-card';
 
-                // Open the map popup on click
+                // Ouvrir le détail de l'activité au clic
                 card.onclick = () => showOnMap(activity.latitude, activity.longitude, activity.name);
 
                 const buttonText = wishlistItems[activity.name] ? "Retirer de la wishlist" : "Ajouter à la wishlist";
@@ -447,7 +479,7 @@
                             <p>📸 Popularité: ${activity.popularity_score}/10</p>
                         </div>
                         <button class="add-to-wishlist-btn" onclick="toggleWishlistItem(${activity.latitude}, ${activity.longitude}, '${activity.name}', this); event.stopPropagation();">${buttonText}</button>
-                        <!-- More Info Button -->
+                        <!-- Bouton "En savoir plus" -->
                         <button class="more-info-btn" onclick="openPopup('${slug}'); event.stopPropagation();">En savoir plus</button>
                     </div>
                 `;
@@ -458,7 +490,7 @@
             });
         }
 
-        // Function to toggle an activity in the wishlist
+        // Fonction pour basculer un élément dans la wishlist
         function toggleWishlistItem(lat, lon, name, button) {
             if (wishlistItems[name]) {
                 removeFromWishlist(name, lat, lon, button);
@@ -467,18 +499,18 @@
             }
         }
 
-        // Function to add activity to wishlist
+        // Fonction pour ajouter une activité à la wishlist
         function addToWishlist(lat, lon, name, button) {
-            // Update the button text
+            // Mettre à jour le texte du bouton
             button.textContent = "Retirer de la wishlist";
 
-            // Add the activity to wishlistItems
+            // Ajouter l'activité à wishlistItems
             wishlistItems[name] = true;
 
-            // Add the item to the wishlist
+            // Ajouter l'élément à la wishlist
             const wishlistBlock = document.getElementById('wishlist-items');
 
-            // Create the wishlist item element
+            // Créer l'élément wishlist-item
             const wishlistItem = document.createElement('div');
             wishlistItem.className = 'wishlist-item';
             wishlistItem.setAttribute('data-name', name);
@@ -487,10 +519,10 @@
                 <button class="remove-wishlist-btn" onclick="removeFromWishlist('${name}', ${lat}, ${lon}, this); event.stopPropagation();">Supprimer</button>
             `;
 
-            // Add the item to the wishlist
+            // Ajouter l'élément à la wishlist
             wishlistBlock.appendChild(wishlistItem);
 
-            // Add the marker to the map
+            // Ajouter le marqueur sur la carte
             const marker = L.marker([lat, lon], { icon: terracottaIcon })
                 .addTo(map)
                 .bindPopup(`
@@ -499,17 +531,17 @@
                 `);
             wishlistMarkers[name] = marker;
 
-            // Update the wishlist count
+            // Mettre à jour le compteur de la wishlist
             updateWishlistCount();
 
-            // Add the wishlist-added class to the activity card
+            // Ajouter la classe wishlist-added à la carte d'activité
             const card = button.closest('.activity-card');
             card.classList.add('wishlist-added');
         }
 
-        // Function to remove activity from wishlist
+        // Fonction pour supprimer une activité de la wishlist
         function removeFromWishlist(name, lat, lon, button) {
-            // Update the button text on the activity card
+            // Mettre à jour le texte du bouton sur la carte d'activité
             const activityCards = document.querySelectorAll('.activity-card');
             activityCards.forEach(card => {
                 if (card.querySelector('.activity-title').textContent === name) {
@@ -519,10 +551,10 @@
                 }
             });
 
-            // Remove the activity from wishlistItems
+            // Supprimer l'activité de wishlistItems
             delete wishlistItems[name];
 
-            // Remove the item from the wishlist
+            // Supprimer l'élément de la wishlist
             const wishlistBlock = document.getElementById('wishlist-items');
             const items = wishlistBlock.getElementsByClassName('wishlist-item');
             for (let i = items.length - 1; i >= 0; i--) {
@@ -531,29 +563,29 @@
                 }
             }
 
-            // Remove the marker from the map
+            // Supprimer le marqueur de la carte
             if (wishlistMarkers[name]) {
                 map.removeLayer(wishlistMarkers[name]);
                 delete wishlistMarkers[name];
             }
 
-            // Update the wishlist count
+            // Mettre à jour le compteur de la wishlist
             updateWishlistCount();
         }
 
-        // Function to toggle the wishlist drawer
+        // Fonction pour basculer l'affichage de la wishlist
         function toggleWishlist() {
             const wishlistDrawer = document.getElementById('wishlist-drawer');
             wishlistDrawer.classList.toggle('open');
         }
 
-        // Function to update the wishlist count
+        // Fonction pour mettre à jour le compteur de la wishlist
         function updateWishlistCount() {
             const count = Object.keys(wishlistItems).length;
             document.getElementById('wishlist-count').innerText = count;
         }
 
-        // Function to fetch and display activities from the server
+        // Fonction pour récupérer et afficher les activités depuis le serveur
         function updateCriteria() {
             const touristique = document.getElementById('touristique').value;
             const culturel = document.getElementById('culturel').value;
@@ -581,14 +613,14 @@
 
         updateCriteria();
 
-        // Function to open the popup and load content
+        // Fonction pour ouvrir la pop-up et charger le contenu
         function openPopup(slug) {
             event.stopPropagation();
-            // Show the popup elements
+            // Afficher les éléments de la pop-up
             document.getElementById('popup-overlay').style.display = 'block';
             document.getElementById('popup-content').style.display = 'block';
 
-            // Load the corresponding content
+            // Charger le contenu correspondant
             fetch(`/site/${slug}`)
                 .then(response => response.text())
                 .then(data => {
@@ -600,7 +632,7 @@
                 });
         }
 
-        // Function to close the popup
+        // Fonction pour fermer la pop-up
         function closePopup() {
             document.getElementById('popup-overlay').style.display = 'none';
             document.getElementById('popup-content').style.display = 'none';
