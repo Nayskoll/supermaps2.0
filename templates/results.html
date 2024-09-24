@@ -297,23 +297,24 @@
     <div class="layout-container">
         <!-- Left column with filters and results -->
         <div class="left-section">
-            <div id="filters">
-                <div>
-                    <label for="touristique">Touristique (1 à 5): <span id="touristique_value">3</span></label>
-                    <input type="range" id="touristique" name="touristique" min="1" max="5" value="3" oninput="updateCriteria()">
-                </div>
-                <div>
-                    <label for="culturel">Culturel (1 à 5): <span id="culturel_value">3</span></label>
-                    <input type="range" id="culturel" name="culturel" min="1" max="5" value="3" oninput="updateCriteria()">
-                </div>
-                <div>
-                    <label for="chill">Chill (1 à 5): <span id="chill_value">3</span></label>
-                    <input type="range" id="chill" name="chill" min="1" max="5" value="3" oninput="updateCriteria()">
-                </div>                <div></div>
-                    <label for="popularity">Popularity (1 à 5): <span id="popularity_value">5</span></label>
-                    <input type="range" id="popularity" name="popularity" min="1" max="5" value="5" oninput="updateCriteria()">
-                </div>
+        <div id="filters">
+            <div>
+                <label for="touristique">Touristique (1 à 5): <span id="touristique_value">3</span></label>
+                <input type="range" id="touristique" name="touristique" min="1" max="5" value="3" oninput="updateCriteria()">
             </div>
+            <div>
+                <label for="culturel">Culturel (1 à 5): <span id="culturel_value">3</span></label>
+                <input type="range" id="culturel" name="culturel" min="1" max="5" value="3" oninput="updateCriteria()">
+            </div>
+            <div>
+                <label for="chill">Chill (1 à 5): <span id="chill_value">3</span></label>
+                <input type="range" id="chill" name="chill" min="1" max="5" value="3" oninput="updateCriteria()">
+            </div>
+            <div>
+                <label for="popularity">Popularité (1 à 5): <span id="popularity_value">5</span></label>
+                <input type="range" id="popularity" name="popularity" min="1" max="5" value="5" oninput="updateCriteria()">
+            </div>
+        </div>
 
             <div id="results">
                 <!-- Activities will be dynamically inserted here -->

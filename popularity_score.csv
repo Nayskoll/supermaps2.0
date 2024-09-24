@@ -1,115 +1,106 @@
-name,popularity_score
-Tour Eiffel,10
-Louvre Museum,10
-Seine River Cruise,8
-Notre-Dame Cathedral,9
-Montmartre Walking Tour,8
-Champs-Élysées,9
-Palace of Versailles,9
-Arc de Triomphe,8
-Sainte-Chapelle,8
-Moulin Rouge Show,8
-Paris Catacombs,7
-Musée d'Orsay,9
-Sacré-Cœur Basilica,9
-Moulin Rouge Show,8
-Paris Catacombs,7
-Musée d'Orsay,9
-Sacré-Cœur Basilica,9
-Opéra Garnier Tour,7
-Jardin des Tuileries,8
-Versailles Gardens,8
-Pont Alexandre III,7
-Luxembourg Gardens,8
-Galeries Lafayette Rooftop,7
-Disneyland Paris,10
-Canal Saint-Martin,7
-Bois de Boulogne,7
-Jardin des Plantes,7
-Coulée Verte René-Dumont,6
-Île Saint-Louis,7
-Buttes-Chaumont Park,7
-La Recyclerie,6
-Square du Vert-Galant,6
-Marché des Enfants Rouges,7
-Parc de la Villette,7
-Parc Monceau,7
-Promenade Plantée,6
-Place des Vosges,8
-Canal de l'Ourcq,6
-La Campagne à Paris,5
-Belleville Park,6
-Jardin d'Acclimatation,7
-Bois de Vincennes,7
-Rue Crémieux,6
-Square des Batignolles,6
-Rue Mouffetard Market,6
-Butte Bergeyre,5
-Musée de la Chasse et de la Nature,6
-Villa Léandre,5
-Parc Georges-Brassens,6
-Jardin Catherine-Labouré,5
-La Campagne à Paris,5
-Square des Peupliers,5
-Hôpital Saint-Louis Courtyard,5
-Promenade Dora Maar,5
-Parc de Belleville,6
-Square du Temple,5
-La Petite Ceinture,5
-Parc de la Butte-du-Chapeau-Rouge,5
-Passage Brady,5
-Jardin du Palais Royal,6
-Square René Viviani,5
-Quai de Jemmapes,6
-Musée Zadkine,5
-Parc de Bercy,6
-Parc André Citroën,6
-Beaugrenelle Shopping Mall,5
-Les Halles Forum,6
-Bowling Mouffetard,5
-Batignolles Square,5
-Place du Marché Saint-Honoré,5
-Aquaboulevard,6
-Paris Kart Indoor,5
-Escape Hunt,5
-Pétanque at Place Dauphine,5
-Musée Rodin,8
-Musée d'Orsay,9
-Bibliothèque Sainte-Geneviève,6
-Musée Carnavalet,7
-Palais Garnier,8
-Maison de Victor Hugo,6
-Musée de l'Orangerie,7
-Musée Picasso,7
-Cité de l'Architecture et du Patrimoine,6
-Institut du Monde Arabe,6
-Musée Jacquemart-André,6
-Musée du Quai Branly,7
-Maison de Balzac,6
-Petit Palais,8
-Grand Palais,8
-Panthéon,8
-Théâtre des Champs-Élysées,6
-Musée de Cluny,7
-Maison Européenne de la Photographie,6
-Palais de Tokyo,7
-Musée Guimet,7
-Opéra Bastille,7
-Musée Nissim de Camondo,6
-La Philharmonie de Paris,7
-Musée Bourdelle,6
-Musée Marmottan Monet,7
-Musée de la Vie Romantique,6
-Centre Pompidou,8
-Maison Rouge,6
-Théâtre du Châtelet,6
-La Recyclerie,6
-Les Grands Voisins,5
-Promenade des Plantes,6
-Musée de Montmartre,7
-Marché aux Puces de Saint-Ouen,6
-Canal de l'Ourcq,6
-Jardin des Serres d'Auteuil,6
-Butte Bergeyre,5
-La Pagode,5
-Viaduc des Arts,6
+﻿name,popularity_score
+Aquaboulevard,3.0
+Arc de Triomphe,6.0
+Batignolles Square,1.0
+Beaugrenelle Shopping Mall,1.0
+Belleville Park,3.0
+Bibliothèque Sainte-Geneviève,3.0
+Bois de Boulogne,5.0
+Bois de Vincennes,5.0
+Bowling Mouffetard,1.0
+Butte Bergeyre,1.0
+Buttes-Chaumont Park,5.0
+Canal Saint-Martin,5.0
+Canal de l'Ourcq,3.0
+Centre Pompidou,6.0
+Champs-Élysées,8.0
+Cité de l'Architecture et du Patrimoine,3.0
+Coulée Verte René-Dumont,3.0
+Disneyland Paris,10.0
+Escape Hunt,1.0
+Galeries Lafayette Rooftop,5.0
+Grand Palais,6.0
+Hôpital Saint-Louis Courtyard,1.0
+Institut du Monde Arabe,3.0
+Jardin Catherine-Labouré,1.0
+Jardin d'Acclimatation,5.0
+Jardin des Plantes,5.0
+Jardin des Serres d'Auteuil,3.0
+Jardin des Tuileries,6.0
+Jardin du Palais Royal,3.0
+La Campagne à Paris,1.0
+La Pagode,1.0
+La Petite Ceinture,1.0
+La Philharmonie de Paris,5.0
+La Recyclerie,3.0
+Les Grands Voisins,1.0
+Les Halles Forum,3.0
+Louvre Museum,10.0
+Luxembourg Gardens,6.0
+Maison Européenne de la Photographie,3.0
+Maison Rouge,3.0
+Maison de Balzac,3.0
+Maison de Victor Hugo,3.0
+Marché aux Puces de Saint-Ouen,3.0
+Marché des Enfants Rouges,5.0
+Montmartre Walking Tour,6.0
+Moulin Rouge Show,6.0
+Musée Bourdelle,3.0
+Musée Carnavalet,5.0
+Musée Guimet,5.0
+Musée Jacquemart-André,3.0
+Musée Marmottan Monet,5.0
+Musée Nissim de Camondo,3.0
+Musée Picasso,5.0
+Musée Rodin,6.0
+Musée Zadkine,1.0
+Musée d'Orsay,8.0
+Musée de Cluny,5.0
+Musée de Montmartre,5.0
+Musée de l'Orangerie,5.0
+Musée de la Chasse et de la Nature,3.0
+Musée de la Vie Romantique,3.0
+Musée du Quai Branly,5.0
+Notre-Dame Cathedral,8.0
+Opéra Bastille,5.0
+Opéra Garnier Tour,5.0
+Palace of Versailles,8.0
+Palais Garnier,6.0
+Palais de Tokyo,5.0
+Panthéon,6.0
+Parc André Citroën,3.0
+Parc Georges-Brassens,3.0
+Parc Monceau,5.0
+Parc de Belleville,3.0
+Parc de Bercy,3.0
+Parc de la Butte-du-Chapeau-Rouge,1.0
+Parc de la Villette,5.0
+Paris Catacombs,5.0
+Paris Kart Indoor,1.0
+Passage Brady,1.0
+Petit Palais,6.0
+Place des Vosges,6.0
+Place du Marché Saint-Honoré,1.0
+Pont Alexandre III,5.0
+Promenade Dora Maar,1.0
+Promenade Plantée,3.0
+Promenade des Plantes,3.0
+Pétanque at Place Dauphine,1.0
+Quai de Jemmapes,3.0
+Rue Crémieux,3.0
+Rue Mouffetard Market,3.0
+Sacré-Cœur Basilica,8.0
+Sainte-Chapelle,6.0
+Seine River Cruise,6.0
+Square René Viviani,1.0
+Square des Batignolles,3.0
+Square des Peupliers,1.0
+Square du Temple,1.0
+Square du Vert-Galant,3.0
+Théâtre des Champs-Élysées,3.0
+Théâtre du Châtelet,3.0
+Tour Eiffel,10.0
+Versailles Gardens,6.0
+Viaduc des Arts,3.0
+Villa Léandre,1.0
+Île Saint-Louis,5.0

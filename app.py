@@ -13,12 +13,6 @@ load_dotenv()
 csv_file = 'paris_activities_high_touristic.csv'
 df = pd.read_csv(csv_file)
 
-
-# Afficher les lignes avec des valeurs manquantes dans les scores
-missing_values = df[df[['touristic_score', 'cultural_score', 'chill_score', 'popularity_score']].isnull().any(axis=1)]
-print("Activités avec des valeurs manquantes :", missing_values)
-
-
 def calculate_matching_score(row, touristique, culturel, chill, popularity):
     # Normalize user inputs (1-5 scale) to match activity scores (1-10 scale)
     touristique_normalized = int(touristique) * 2  # Convert to 1-10 scale
@@ -85,8 +79,6 @@ def update_activities():
 
     # Return the activities as a JSON response
     return jsonify({'activities': activities})
-
-
 
 
 # Charger les données JSON
