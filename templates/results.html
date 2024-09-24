@@ -250,6 +250,43 @@
                 overflow-y: auto; /* Permettre le défilement si la wishlist est longue */
             }
         }
+
+        /* Styles pour la pop-up */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            display: none; /* Masqué par défaut */
+            z-index: 1000;
+        }
+
+        .popup-content {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            width: 80%;
+            max-width: 800px;
+            height: 80%;
+            overflow-y: auto;
+            border-radius: 10px;
+            display: none; /* Masqué par défaut */
+            z-index: 1001;
+            padding: 20px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 2em;
+            color: #333;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -291,6 +328,14 @@
                     <!-- Wishlist items will be dynamically inserted here -->
                 </div>
             </div>
+        </div>
+    </div>
+        <!-- Pop-up pour afficher les détails du site touristique -->
+    <div id="popup-overlay" class="popup-overlay" onclick="closePopup()"></div>
+    <div id="popup-content" class="popup-content">
+        <span class="close-btn" onclick="closePopup()">&times;</span>
+        <div id="popup-inner-content">
+            <!-- Le contenu détaillé sera chargé ici -->
         </div>
     </div>
 
@@ -349,6 +394,7 @@
             resultsContainer.innerHTML = ''; 
 
             activities.forEach(activity => {
+                const slug = generateSlug(activity.name);
                 const card = document.createElement('div');
                 card.className = 'activity-card';
                 card.onclick = () => showOnMap(activity.latitude, activity.longitude, activity.name);
@@ -367,6 +413,9 @@
                             <p>😌 Chill: ${activity.chill_score}/10</p>
                         </div>
                         <button class="add-to-wishlist-btn" onclick="toggleWishlist(${activity.latitude}, ${activity.longitude}, '${activity.name}', this)">${buttonText}</button>
+                        <!-- Ajout du bouton "En savoir plus" -->
+                        <button class="more-info-btn" onclick="openPopup('${slug}')">En savoir plus</button>
+
                     </div>
                 `;
                 resultsContainer.appendChild(card);
@@ -459,6 +508,38 @@
         }
 
         updateCriteria();
+
+        // Fonction pour ouvrir la pop-up et charger le contenu
+        function openPopup(slug) {
+            // Afficher les éléments de la pop-up
+            document.getElementById('popup-overlay').style.display = 'block';
+            document.getElementById('popup-content').style.display = 'block';
+
+            // Charger le contenu de 'site_detail.html' correspondant
+            fetch(`/site/${slug}`)
+                .then(response => response.text())
+                .then(data => {
+                    // Insérer le contenu dans la pop-up
+                    document.getElementById('popup-inner-content').innerHTML = data;
+                })
+                .catch(error => {
+                    console.error('Erreur lors du chargement du contenu :', error);
+                    document.getElementById('popup-inner-content').innerHTML = '<p>Une erreur est survenue lors du chargement du contenu.</p>';
+                });
+        }
+
+        // Fonction pour fermer la pop-up
+        function closePopup() {
+            document.getElementById('popup-overlay').style.display = 'none';
+            document.getElementById('popup-content').style.display = 'none';
+            document.getElementById('popup-inner-content').innerHTML = ''; // Nettoyer le contenu
+        }
+
+        function generateSlug(name) {
+            return name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '') // Supprime les accents
+                    .replace(/[^a-z0-9 ]/g, '') // Supprime les caractères spéciaux
+                    .trim().replace(/\s+/g, '-'); // Remplace les espaces par des tirets
+        }
     </script>
 </body>
 </html>

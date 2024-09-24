@@ -1,13 +1,17 @@
 name,description,image_url,chill_score,touristic_score,cultural_score,must_do_score,family_friendly_score,large_group_friendly_score,couple_friendly_score,small_group_friendly_score,budget,average_duration_hours,latitude,longitude
-Tour Eiffel,Visitez l'emblématique Tour Eiffel et profitez d'une vue imprenable sur Paris.,tour_eiffel.png,7,10,8,10,9,8,9,7,6,1,48.858844,2.294351
+Tour Eiffel,Visitez l'emblématique Tour Eiffel et profitez d'une vue imprenable sur Paris.,tour_eiffel.png,7,10,8,10,9,8,9,7,6,1,48.858370,2.294481
 Louvre Museum,Explorez l'un des plus grands musées du monde avec des œuvres d'art célèbres comme la Mona Lisa.,louvre_museum.png,5,10,10,10,8,7,8,6,7,4,48.860611,2.337644
-Seine River Cruise,Profitez d'une croisière relaxante sur la Seine et admirez les monuments emblématiques de Paris.,seine_river_cruise.png,8,9,7,9,9,8,10,8,5,2,48.856614,2.3522219
+Seine River Cruise,Profitez d'une croisière relaxante sur la Seine et admirez les monuments emblématiques de Paris.,seine_river_cruise.png,8,9,7,9,9,8,10,8,5,2,48.858374,2.294481
 Notre-Dame Cathedral,Découvrez l'architecture gothique de la cathédrale Notre-Dame de Paris.,notre_dame_cathedral.png,6,10,10,9,7,7,8,7,4,1,48.852968,2.349902
-Montmartre Walking Tour,Explorez le quartier artistique de Montmartre avec ses rues pavées et son ambiance bohème.,montmartre_walking_tour.png,7,9,8,8,6,7,9,8,5,4,48.886707,2.343104
-Champs-Élysées,Promenez-vous sur l'avenue des Champs-Élysées et découvrez les boutiques de luxe et cafés.,champs_elysees.png,7,10,7,9,8,8,9,8,6,4,48.866667,2.311667
+Montmartre Walking Tour,Explorez le quartier artistique de Montmartre avec ses rues pavées et son ambiance bohème.,montmartre_walking_tour.png,7,9,8,8,6,7,9,8,5,4,48.886706,2.343065
+Champs-Élysées,Promenez-vous sur l'avenue des Champs-Élysées et découvrez les boutiques de luxe et cafés.,champs_elysees.png,7,10,7,9,8,8,9,8,6,4,48.869556,2.307266
 Palace of Versailles,"Visitez l'opulent château de Versailles, ancienne résidence des rois de France.",palace_of_versailles.png,6,10,10,10,8,7,8,7,7,4,48.804865,2.120355
 Arc de Triomphe,Montez au sommet de l'Arc de Triomphe pour une vue panoramique sur Paris.,arc_de_triomphe.png,6,10,8,9,7,7,8,7,5,4,48.873792,2.295028
-Sainte-Chapelle,"Admirez les magnifiques vitraux de la Sainte-Chapelle, un joyau de l'architecture gothique.",sainte_chapelle.png,6,9,10,8,6,6,7,7,4,2,48.855438,2.345169
+Sainte-Chapelle,"Admirez les magnifiques vitraux de la Sainte-Chapelle, un joyau de l'architecture gothique.",sainte_chapelle.png,6,9,10,8,6,6,7,7,4,2,48.855438,2.344863
+Moulin Rouge Show,Assistez à un spectacle de cabaret au légendaire Moulin Rouge.,moulin_rouge_show.png,7,9,7,8,5,8,10,8,8,4,48.884123,2.332222
+Paris Catacombs,"Explorez les ossuaires souterrains de Paris, une expérience unique et fascinante.",paris_catacombs.png,5,9,8,8,4,6,7,7,5,2,48.833853,2.332366
+Musée d'Orsay,Découvrez la plus grande collection au monde d'œuvres impressionnistes et post-impressionnistes.,musee_dorsay.png,6,10,10,9,7,6,8,7,7,3,48.860006,2.326595
+Sacré-Cœur Basilica,"Visitez la basilique emblématique de Montmartre, offrant une vue imprenable sur Paris.",sacre_coeur_basilica.png,7,10,9,9,8,7,9,8,4,1,48.886706,2.343065
 Moulin Rouge Show,Assistez à un spectacle de cabaret au légendaire Moulin Rouge.,moulin_rouge_show.png,7,9,7,8,5,8,10,8,8,4,48.884123,2.332558
 Paris Catacombs,"Explore the underground ossuaries of Paris, a unique and haunting experience.",paris_catacombs.png,5,9,8,8,4,6,7,7,5,2,48.833937,2.332302
 Musée d'Orsay,Discover the world's largest collection of impressionist and post-impressionist masterpieces.,musee_dorsay.png,6,10,10,9,7,6,8,7,7,3,48.86002,2.326565

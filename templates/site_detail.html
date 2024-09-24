@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ site.name }} - Fiche Touristique</title>
+    <style>
+        /* Styles CSS pour améliorer la présentation */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        .site-touristique {
+            max-width: 800px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .call-to-action a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #e74c3c;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .call-to-action a:hover {
+            background-color: #c0392b;
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        .fiche-pratique ul, .accessibilite ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .fiche-pratique li, .accessibilite li {
+            margin-bottom: 5px;
+        }
+        .updated-at {
+            font-size: 0.9em;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+<article class="site-touristique">
+    <h1>{{ site.name }}</h1>
+
+    <section class="introduction">
+        <p>{{ site.introduction }}</p>
+    </section>
+
+    <section class="histoire">
+        <h2>{{ site.history.title }}</h2>
+        <p>{{ site.history.content }}</p>
+    </section>
+
+    <section class="points-interet">
+        <h2>{{ site.points_of_interest.title }}</h2>
+        <ul>
+            {% for point in site.points_of_interest.content %}
+            <li>{{ point | safe }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section class="anecdotes">
+        <h2>{{ site.anecdotes.title }}</h2>
+        <p>{{ site.anecdotes.content }}</p>
+    </section>
+
+    <section class="exterieur">
+        <h2>{{ site.environment.title }}</h2>
+        <p>{{ site.environment.content }}</p>
+    </section>
+
+    <section class="conclusion">
+        <h2>{{ site.conclusion.title }}</h2>
+        <p>{{ site.conclusion.content }}</p>
+        {% if site.conclusion.call_to_action %}
+        <p class="call-to-action"><a href="{{ site.conclusion.call_to_action }}">Réservez votre visite dès maintenant</a></p>
+        {% endif %}
+    </section>
+
+    <section class="fiche-pratique">
+        <h2>Fiche Pratique</h2>
+        <ul>
+            <li><strong>Prix d'entrée :</strong> {{ site.practical_info.entry_fee }}</li>
+            <li><strong>Horaires d'ouverture :</strong> {{ site.practical_info.opening_hours }}</li>
+            <li><strong>Adresse :</strong> {{ site.practical_info.address }}</li>
+            <li><strong>Téléphone :</strong> {{ site.practical_info.phone }}</li>
+            <li><strong>Site web :</strong> <a href="{{ site.practical_info.website }}">{{ site.practical_info.website }}</a></li>
+        </ul>
+    </section>
+
+    <section class="accessibilite">
+        <h2>Informations d'accessibilité</h2>
+        <ul>
+            <li>{{ site.accessibility.mobility_info }}</li>
+            <li>{{ site.accessibility.audio_guides }}</li>
+            <li>{{ site.accessibility.health_measures }}</li>
+        </ul>
+    </section>
+
+    <p class="updated-at"><em>Dernière mise à jour : {{ site.updated_at }}</em></p>
+</article>
+</body>
+</html>

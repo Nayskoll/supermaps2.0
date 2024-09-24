@@ -1,8 +1,10 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, abort
 import pandas as pd
 import json
 from dotenv import load_dotenv
 import os
+from slugify import slugify
+
 
 app = Flask(__name__)
 
@@ -72,6 +74,22 @@ def update_activities():
 
     # Return the activities as a JSON response
     return jsonify({'activities': activities})
+
+
+
+
+# Charger les données JSON
+with open('tourist_sites.json', 'r', encoding='utf-8') as f:
+    tourist_sites = json.load(f)
+
+@app.route('/site/<site_slug>')
+def site_detail(site_slug):
+    site = tourist_sites.get(site_slug)
+    if site:
+        return render_template('site_detail.html', site=site)
+    else:
+        abort(404)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
