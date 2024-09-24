@@ -178,37 +178,55 @@
 
             h1 {
                 font-size: 1.2em;
-                text-align: center;
-                margin: 0;
-                padding: 10px 0;
+                text-align: left; /* Aligner le titre à gauche */
+                margin: 10px 0;
+                padding: 10px;
                 background-color: #f0f0f0;
                 color: #333;
                 z-index: 20;
+                width: 60%; /* Assurez-vous que le titre n'occupe que la largeur de la section gauche */
+                margin-right: 40%; /* Ajouter une marge droite pour éviter le chevauchement avec la section droite */
             }
 
             .layout-container {
-                flex-direction: column;
-                align-items: center;
-                padding: 0 10px;
-            }
-
-            .right-section {
-                width: 100%;
-                height: 300px;
-                margin-bottom: 20px;
-                position: relative;
-                z-index: 10;
+                display: flex;
+                flex-direction: row; /* Garder les sections côte à côte */
+                align-items: flex-start;
+                padding: 0;
             }
 
             .left-section {
-                width: 100%;
-                margin-top: 10px;
+                width: 60%; /* Ajuster la largeur selon vos besoins */
+                margin-top: 0; /* Supprimer la marge supérieure */
+                overflow-y: auto; /* Permettre le défilement des activités */
+                padding-right: 10px; /* Espace entre les sections */
+                margin-right: 0; /* Supprimer la marge droite */
             }
 
+            .right-section {
+                width: 40%; /* Ajuster la largeur selon vos besoins */
+                position: fixed;
+                right: 0;
+                top: 0;
+                height: 100vh; /* Occuper toute la hauteur de la fenêtre */
+                z-index: 10;
+                background-color: #fff;
+                display: flex;
+                flex-direction: column;
+                overflow: hidden; /* Empêcher le débordement */
+            }
+
+            /* Ajuster la section gauche pour éviter que le contenu ne soit caché sous la section fixe */
+            .left-section {
+                margin-right: 40%; /* Correspond à la largeur de .right-section */
+            }
+
+            /* Ajustements pour les sliders dans la section des filtres */
             #filters {
-                justify-content: center;
+                display: flex;
+                flex-direction: column; /* Empiler les sliders verticalement */
+                align-items: flex-start; /* Aligner les sliders à gauche */
                 gap: 10px;
-                flex-wrap: wrap;
                 padding: 10px;
             }
 
@@ -217,10 +235,19 @@
                 padding: 10px;
             }
 
+            .activity-card {
+                margin-bottom: 20px;
+            }
+
             #map {
-                height: 100%;
-                margin: 0;
-                padding: 0;
+                width: 100%;
+                height: 60%; /* Ajuster la hauteur de la carte selon vos besoins */
+            }
+
+            .wishlist-block {
+                width: 100%;
+                height: 40%; /* Le reste de l'espace pour la wishlist */
+                overflow-y: auto; /* Permettre le défilement si la wishlist est longue */
             }
         }
     </style>
