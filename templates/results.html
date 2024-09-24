@@ -14,328 +14,361 @@
           crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <style>
-        /* Styles généraux */
-        body {
-            font-family: 'Poppins', sans-serif;
+    /* Styles généraux */
+    body {
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+    }
+
+    h1 {
+        color: #333;
+        margin: 20px;
+    }
+
+    /* Conteneur principal */
+    .layout-container {
+        display: flex;
+        flex-direction: row;
+    }
+
+    /* Section gauche */
+    .left-section {
+        width: 75%;
+        overflow-y: auto;
+        height: 100vh;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    /* Section droite (Carte) */
+    .right-section {
+        width: 25%;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    #map {
+        width: 100%;
+        height: 100%;
+    }
+
+    /* Filtres */
+    #filters {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+    }
+
+    #filters div {
+        flex: 1 1 calc(50% - 20px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    #filters label {
+        margin-bottom: 5px;
+        text-align: center;
+    }
+
+    /* Réduction de la taille des sliders */
+    #filters input[type="range"] {
+        width: 80%;
+        max-width: 200px;
+    }
+
+    /* Résultats */
+    #results {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+    }
+
+    .activity-card {
+        background-color: #fff;
+        border-radius: 15px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+        transition: transform 0.3s, box-shadow 0.3s;
+        cursor: pointer;
+    }
+
+    .activity-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .activity-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .activity-content {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .activity-title {
+        font-size: 1.5em;
+        color: #333;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .activity-description {
+        font-size: 1em;
+        color: #555;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .activity-details {
+        font-size: 0.9em;
+        color: #777;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .add-to-wishlist-btn {
+        background-color: #D2691E; /* Couleur terracotta */
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        cursor: pointer;
+        border-radius: 5px;
+        margin: 5px 0;
+        width: 80%;
+    }
+
+    .more-info-btn {
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        cursor: pointer;
+        border-radius: 5px;
+        margin: 5px 0;
+        width: 80%;
+    }
+
+    /* Icône de la wishlist */
+    #wishlist-icon {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: #007BFF;
+        color: white;
+        padding: 10px;
+        border-radius: 50%;
+        cursor: pointer;
+        z-index: 1001;
+    }
+
+    #wishlist-icon i {
+        font-size: 1.5em;
+    }
+
+    #wishlist-count {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background-color: #ff6347;
+        color: white;
+        border-radius: 50%;
+        padding: 2px 5px;
+        font-size: 0.8em;
+    }
+
+    /* Fenêtre dépliante de la wishlist */
+    #wishlist-drawer {
+        position: fixed;
+        right: -300px;
+        top: 0;
+        width: 300px;
+        height: 100%;
+        background-color: #fff;
+        box-shadow: -2px 0 5px rgba(0,0,0,0.3);
+        transition: right 0.3s ease;
+        z-index: 1000;
+        overflow-y: auto;
+    }
+
+    #wishlist-drawer.open {
+        right: 0;
+    }
+
+    #wishlist-drawer h3 {
+        padding: 20px;
+        margin: 0;
+        background-color: #007BFF;
+        color: white;
+    }
+
+    #wishlist-items {
+        padding: 20px;
+    }
+
+    .wishlist-item {
+        background-color: #f2e0d4;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .wishlist-item p {
+        margin: 0;
+        font-size: 1em;
+        font-weight: bold;
+    }
+
+    .remove-wishlist-btn {
+        background-color: #ff6347;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    /* Carte d'activité ajoutée à la wishlist */
+    .activity-card.wishlist-added {
+        background-color: #f2e0d4;
+        border: 1px solid #c15a37;
+    }
+
+    /* Styles pour la pop-up */
+    .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.7);
+        display: none;
+        z-index: 1000;
+    }
+
+    .popup-content {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        width: 80%;
+        max-width: 800px;
+        height: 80%;
+        overflow-y: auto;
+        border-radius: 10px;
+        display: none;
+        z-index: 1001;
+        padding: 20px;
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        font-size: 2em;
+        color: #333;
+        cursor: pointer;
+    }
+
+    /* Styles pour les appareils mobiles */
+    @media screen and (max-width: 768px) {
+        /* Réinitialisation des marges du body et du html */
+        body, html {
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
         }
 
+        /* Ajustement du titre */
         h1 {
-            color: #333;
-            margin: 20px;
+            margin: 5px 0 0 0;
+            text-align: center;
+            font-size: 1.5em;
         }
 
-        /* Conteneur principal */
         .layout-container {
-            display: flex;
-            flex-direction: row;
+            flex-direction: column;
+            margin-top: 0;
         }
 
-        /* Section gauche */
         .left-section {
-            width: 75%;
-            overflow-y: auto;
-            height: 100vh;
-            padding: 20px;
-            box-sizing: border-box;
+            width: 100%;
+            height: auto;
+            padding: 10px;
+            margin-top: 135px;
         }
 
-        /* Section droite (Carte) */
         .right-section {
-            width: 25%;
-            position: sticky;
+            width: 100%;
+            height: 200px;
+            position: fixed;
             top: 0;
-            height: 100vh;
-            overflow: hidden;
+            left: 0;
         }
 
         #map {
-            width: 100%;
-            height: 100%;
+            height: 190px;
         }
 
-        /* Filtres */
+        /* Positionnement de l'icône de la wishlist en haut à droite */
+        #wishlist-icon {
+            top: 10px;
+            right: 10px;
+            z-index: 1001;
+        }
+
+        /* Ajustement des filtres */
         #filters {
             display: flex;
-            gap: 20px;
             flex-wrap: wrap;
-            margin-bottom: 20px;
+            justify-content: center;
+            gap: 10px;
+            padding: 5px;
+            margin-top: 5px;
         }
 
         #filters div {
-            flex: 1 1 calc(50% - 20px);
-            display: flex;
-            flex-direction: column;
+            flex: 1 1 calc(50% - 10px);
+            max-width: calc(50% - 10px);
+            margin-bottom: 5px; /* Réduction de l'espace entre les lignes */
+            align-items: center;
         }
 
         #filters label {
-            margin-bottom: 5px;
+            font-size: 0.9em;
         }
 
-        /* Réduction de la taille des sliders */
+        /* Réduction de la taille des sliders en version mobile */
         #filters input[type="range"] {
-            width: 80%;
-            max-width: 200px;
+            width: 100%;
+            max-width: 100%;
         }
 
         /* Résultats */
         #results {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: 1fr;
+            padding: 10px;
         }
 
         .activity-card {
-            background-color: #fff;
-            border-radius: 15px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
+            margin-bottom: 20px;
         }
-
-        .activity-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
-        }
-
-        .activity-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .activity-content {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .activity-title {
-            font-size: 1.5em;
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        .activity-description {
-            font-size: 1em;
-            color: #555;
-            margin-bottom: 10px;
-        }
-
-        .activity-details {
-            font-size: 0.9em;
-            color: #777;
-            margin-bottom: 10px;
-        }
-
-        .add-to-wishlist-btn {
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
-
-        /* Icône de la wishlist */
-        #wishlist-icon {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background-color: #007BFF;
-            color: white;
-            padding: 10px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 1001; /* Assurez-vous qu'il est au-dessus de la carte */
-        }
-
-        #wishlist-icon i {
-            font-size: 1.5em;
-        }
-
-        #wishlist-count {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background-color: #ff6347;
-            color: white;
-            border-radius: 50%;
-            padding: 2px 5px;
-            font-size: 0.8em;
-        }
-
-        /* Fenêtre dépliante de la wishlist */
-        #wishlist-drawer {
-            position: fixed;
-            right: -300px;
-            top: 0;
-            width: 300px;
-            height: 100%;
-            background-color: #fff;
-            box-shadow: -2px 0 5px rgba(0,0,0,0.3);
-            transition: right 0.3s ease;
-            z-index: 1000;
-            overflow-y: auto;
-        }
-
-        #wishlist-drawer.open {
-            right: 0;
-        }
-
-        #wishlist-drawer h3 {
-            padding: 20px;
-            margin: 0;
-            background-color: #007BFF;
-            color: white;
-        }
-
-        #wishlist-items {
-            padding: 20px;
-        }
-
-        .wishlist-item {
-            background-color: #f2e0d4;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .wishlist-item p {
-            margin: 0;
-            font-size: 1em;
-            font-weight: bold;
-        }
-
-        .remove-wishlist-btn {
-            background-color: #ff6347;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        /* Carte d'activité ajoutée à la wishlist */
-        .activity-card.wishlist-added {
-            background-color: #f2e0d4;
-            border: 1px solid #c15a37;
-        }
-
-        /* Styles pour la pop-up */
-        .popup-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.7);
-            display: none;
-            z-index: 1000;
-        }
-
-        .popup-content {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #fff;
-            width: 80%;
-            max-width: 800px;
-            height: 80%;
-            overflow-y: auto;
-            border-radius: 10px;
-            display: none;
-            z-index: 1001;
-            padding: 20px;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 2em;
-            color: #333;
-            cursor: pointer;
-        }
-
-        /* Styles pour les appareils mobiles */
-        @media screen and (max-width: 768px) {
-            .layout-container {
-                flex-direction: column;
-            }
-
-            .left-section {
-                width: 100%;
-                height: auto;
-                padding: 10px;
-                margin-top: 190px; /* Ajuster pour éviter le chevauchement avec la carte */
-            }
-
-            .right-section {
-                width: 100%;
-                height: 180px;
-                position: fixed;
-                top: 0;
-                left: 0;
-            }
-
-            #map {
-                height: 180px;
-            }
-
-            /* Positionnement de l'icône de la wishlist en haut à droite */
-            #wishlist-icon {
-                top: 20px;
-                right: 20px;
-                z-index: 1001;
-            }
-
-            /* Ajustement des filtres */
-            #filters {
-                flex-direction: column;
-                align-items: center;
-                padding: 5px;
-                margin-top: 10px;
-            }
-
-            #filters div {
-                flex: none;
-                width: 100%;
-                max-width: 300px;
-                margin-bottom: 5px; /* Réduire l'espace entre les sliders */
-            }
-
-            /* Réduction de la taille des sliders en version mobile */
-            #filters input[type="range"] {
-                width: 70%;
-                max-width: 150px;
-            }
-
-            /* Ajustement de l'espace entre les sliders et la carte */
-            .left-section {
-                margin-top: 190px; /* Ajusté en fonction de la hauteur de la carte */
-            }
-
-            /* Résultats */
-            #results {
-                grid-template-columns: 1fr;
-                padding: 10px;
-            }
-
-            .activity-card {
-                margin-bottom: 20px;
-            }
-        }
-    </style>
+    }
+</style>
 </head>
 <body>
     <!-- Titre -->
