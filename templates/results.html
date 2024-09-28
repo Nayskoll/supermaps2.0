@@ -489,63 +489,65 @@
                 .openOn(map);
         }
 
-        // Fonction pour afficher les activités
         function displayActivities(activities) {
-    const resultsContainer = document.getElementById('results');
-    resultsContainer.innerHTML = '';
+            const resultsContainer = document.getElementById('results');
+            resultsContainer.innerHTML = '';
 
-    activities.forEach(activity => {
-        const slug = generateSlug(activity.name);
-        const card = document.createElement('div');
-        card.className = 'activity-card';
+            activities.forEach(activity => {
+                const slug = generateSlug(activity.name);
+                const card = document.createElement('div');
+                card.className = 'activity-card';
 
-        // Ouvrir le détail de l'activité au clic
-        card.onclick = () => showOnMap(activity.latitude, activity.longitude, activity.name);
+                // Ouvrir le détail de l'activité au clic
+                card.onclick = () => showOnMap(activity.latitude, activity.longitude, activity.name);
 
-        const buttonText = wishlistItems[activity.name] ? "Retirer de la wishlist" : "Ajouter à la wishlist";
+                const buttonText = wishlistItems[activity.name] ? "Retirer de la wishlist" : "Ajouter à la wishlist";
 
-        // Check if affinity_score exists or set it to 'Non disponible'
-        const affinityScore = activity.affinity_score !== null && activity.affinity_score !== undefined
-            ? `${activity.affinity_score}/100`
-            : 'Non disponible';
+                // Check if affinity_score exists or set it to 'Non disponible'
+                const affinityScore = activity.affinity_score !== null && activity.affinity_score !== undefined
+                    ? `${activity.affinity_score}/100`
+                    : 'Non disponible';
 
-        // Add logic for must_do_score to display hearts
-        let hearts = '';
-        if (activity.must_do_score >= 95) {
-            hearts = '❤️‍🔥❤️‍🔥❤️‍🔥❤️‍🔥';
-        } else if (activity.must_do_score >= 85) {
-            hearts = '❤️‍🔥❤️‍🔥❤️‍🔥';
-        } else if (activity.must_do_score >= 75) {
-            hearts = '❤️‍🔥❤️‍🔥';
-        } else {
-            hearts = '🤍';
+                // Add logic for must_do_score to display hearts
+                let hearts = '';
+                if (activity.must_do_score >= 95) {
+                    hearts = '❤️‍🔥❤️‍🔥❤️‍🔥❤️‍🔥';
+                } else if (activity.must_do_score >= 85) {
+                    hearts = '❤️‍🔥❤️‍🔥❤️‍🔥';
+                } else if (activity.must_do_score >= 75) {
+                    hearts = '❤️‍🔥❤️‍🔥';
+                } else {
+                    hearts = '🤍';
+                }
+
+                // Add UNESCO icon 🏛️ with a tooltip if it belongs to UNESCO heritage
+                const unescoIcon = activity.unesco ? `<span class="unesco-icon" title="Ce site fait partie du patrimoine mondial de l'UNESCO en raison de son importance historique et culturelle, englobant des monuments emblématiques et des quartiers historiques de Paris.">🏛️</span>` : '';
+
+                // Insert the hearts and unescoIcon under the title
+                card.innerHTML = `
+                    <img src="${activity.image_url}" alt="${activity.name}" class="activity-image">
+                    <div class="activity-content">
+                        <h3 class="activity-title">${activity.name}</h3>
+                        <div class="activity-hearts">${hearts} ${unescoIcon}</div> <!-- Display the hearts and UNESCO icon with tooltip here -->
+                        <p class="activity-description">${activity.description}</p>
+                        <div class="activity-details">
+                            <p>🌟 Score de matching: ${affinityScore}</p>
+                            <p>🏙️ Touristique: ${activity.touristic_score}/100</p>
+                            <p>🎨 Culturel: ${activity.cultural_score}/100</p>
+                            <p>😌 Chill: ${activity.chill_score}/100</p>
+                            <p>📸 Popularité: ${activity.popularity_score}/100</p>
+                        </div>
+                        <button class="add-to-wishlist-btn" onclick="toggleWishlistItem(${activity.latitude}, ${activity.longitude}, '${activity.name}', this); event.stopPropagation();">${buttonText}</button>
+                        <!-- Bouton "En savoir plus" -->
+                        <button class="more-info-btn" onclick="openPopup('${slug}'); event.stopPropagation();">En savoir plus</button>
+                    </div>
+                `;
+                if (wishlistItems[activity.name]) {
+                    card.classList.add('wishlist-added');
+                }
+                resultsContainer.appendChild(card);
+            });
         }
-
-        // Insert the hearts under the title
-        card.innerHTML = `
-            <img src="${activity.image_url}" alt="${activity.name}" class="activity-image">
-            <div class="activity-content">
-                <h3 class="activity-title">${activity.name}</h3>
-                <div class="activity-hearts">${hearts}</div> <!-- Display the hearts here -->
-                <p class="activity-description">${activity.description}</p>
-                <div class="activity-details">
-                    <p>🌟 Score de matching: ${affinityScore}</p>
-                    <p>🏙️ Touristique: ${activity.touristic_score}/100</p>
-                    <p>🎨 Culturel: ${activity.cultural_score}/100</p>
-                    <p>😌 Chill: ${activity.chill_score}/100</p>
-                    <p>📸 Popularité: ${activity.popularity_score}/100</p>
-                </div>
-                <button class="add-to-wishlist-btn" onclick="toggleWishlistItem(${activity.latitude}, ${activity.longitude}, '${activity.name}', this); event.stopPropagation();">${buttonText}</button>
-                <!-- Bouton "En savoir plus" -->
-                <button class="more-info-btn" onclick="openPopup('${slug}'); event.stopPropagation();">En savoir plus</button>
-            </div>
-        `;
-        if (wishlistItems[activity.name]) {
-            card.classList.add('wishlist-added');
-        }
-        resultsContainer.appendChild(card);
-    });
-}
 
         // Fonction pour basculer un élément dans la wishlist
         function toggleWishlistItem(lat, lon, name, button) {
