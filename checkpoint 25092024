@@ -1,0 +1,10 @@
+voir mes slides
+le script mistral.py fonctionne bien et extrait els éléments des groupes facebooks lorsque je l'ai copié collé
+
+maintenant il doit les extraire dans un csv et les categoriser.
+
+une fois que c'est fait pour chaque élément il devra créer un json.
+
+
+idée : récupérer le sommaire du pdf et trouver une correspondance entre les pages et les données pour lui donenr plus de contexte.
+En gros, je sais que les pages 10-11 correspondent à à voir / à faire dans telle ville. donc je peux lui donner en métadonnée, à voir à faire dans telle ville pour lui donner davantage d'improtance.

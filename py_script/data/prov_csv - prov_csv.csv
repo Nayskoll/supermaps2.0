@@ -1,0 +1,20 @@
+name,chill_score,touristic_score,cultural_score,must_do_score,family_friendly_score,group_friendly_score,couple_friendly_score,budget,time_commitment_score,latitude,longitude,popularity_score,adventurous_score,off_the_beaten_path_score,entertainment_score,sportive_score,originality_score,
+Aquaboulevard,85,60,20,70,90,85,70,2,80,48.8315,2.2739,75,40,20,90,85,60,65
+Arc de Triomphe,40,95,95,95,50,70,80,3,60,48.8738,2.295,90,20,10,70,10,50,30
+Square des Batignolles,90,30,20,25,80,60,85,1,70,48.8885,2.3183,45,30,90,50,10,65,75
+Centre commercial Beaugrenelle,30,70,10,50,80,85,70,3,50,48.8493,2.2782,60,10,15,70,0,20,25
+Parc de Belleville,75,50,50,40,80,70,85,1,60,48.8733,2.3814,55,20,80,60,15,30,70
+Bibliothèque Sainte-Geneviève,60,40,80,70,20,40,50,1,40,48.8463,2.3457,35,10,85,30,10,20,55
+Bois de Boulogne,90,50,30,40,85,90,80,1,85,48.8625,2.2517,70,50,70,70,85,80,65
+Bois de Vincennes,85,50,35,45,90,85,80,1,80,48.8352,2.4411,70,40,70,60,75,85,60
+Quartier Mouffetard,60,70,85,75,50,65,75,2,60,48.8413,2.3488,65,10,80,70,10,20,55
+Butte Bergeyre,85,30,50,40,70,70,80,1,70,48.882,2.3786,45,50,90,50,15,40,75
+Parc des Buttes-Chaumont,90,65,40,60,85,80,85,2,80,48.8806,2.3813,75,30,65,70,50,70,60
+Canal Saint-Martin,75,50,40,45,60,70,85,2,65,48.8736,2.3646,55,10,80,55,20,20,50
+Canal de l'Ourcq,80,45,30,40,75,70,75,3,70,48.8826,2.3775,50,30,85,60,25,40,60
+Centre Pompidou,40,85,95,90,50,70,80,3,70,48.8606,2.3522,80,10,15,85,10,40,25
+Champs-Élysées,30,100,50,90,60,85,70,3,60,48.8698,2.3077,100,10,10,70,0,20,25
+Cité de l'Architecture et du Patrimoine,30,70,80,80,50,70,65,2,60,48.8612,2.2877,60,10,25,50,10,20,30
+Coulée Verte René-Dumont,85,35,40,35,70,70,85,1,65,48.8467,2.3839,50,20,85,50,20,30,55
+Disneyland Paris,30,95,40,85,95,95,70,4,95,48.867,2.783,95,20,10,100,10,50,25
+Escape Hunt,40,60,20,50,85,95,65,2,70,48.8604,2.3531,65,70,20,90,60,30,55

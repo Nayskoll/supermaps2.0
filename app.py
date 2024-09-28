@@ -1,9 +1,8 @@
-from flask import Flask, render_template, request, jsonify, abort
 import pandas as pd
 import json
+from flask import Flask, render_template, request, jsonify, abort
 from dotenv import load_dotenv
 import os
-
 
 app = Flask(__name__)
 
@@ -14,37 +13,29 @@ csv_file = 'paris_activities_high_touristic.csv'
 df = pd.read_csv(csv_file)
 
 def calculate_matching_score(row, touristique, culturel, chill, popularity):
-    # Normalize user inputs (1-5 scale) to match activity scores (1-10 scale)
-    touristique_normalized = int(touristique) * 2  # Convert to 1-10 scale
-    culturel_normalized = int(culturel) * 2        # Convert to 1-10 scale
-    chill_normalized = int(chill) * 2              # Convert to 1-10 scale
-    popularity_normalized = int(popularity) * 2    # Convert to 1-10 scale
+    # Scale user inputs from 1-5 range to 0-100 range
+    touristique_normalized = int(touristique) * 20  # Scale to 0-100
+    culturel_normalized = int(culturel) * 20        # Scale to 0-100
+    chill_normalized = int(chill) * 20              # Scale to 0-100
+    popularity_normalized = int(popularity) * 20    # Scale to 0-100
 
-    # Calculate custom weights using a quadratic function to emphasize extreme values (1 or 5)
-    touristic_weight = ((int(touristique) - 3) ** 2) / 4
-    cultural_weight = ((int(culturel) - 3) ** 2) / 4
-    chill_weight = ((int(chill) - 3) ** 2) / 4
-    popularity_weight = ((int(popularity) - 3) ** 2) / 4
-
-    # Calculate differences, introduce stronger penalties for mismatched scores
+    # Calculate the absolute differences between user input and activity scores (0-100 scale)
     touristic_diff = abs(row['touristic_score'] - touristique_normalized)
     cultural_diff = abs(row['cultural_score'] - culturel_normalized)
     chill_diff = abs(row['chill_score'] - chill_normalized)
     popularity_diff = abs(row['popularity_score'] - popularity_normalized)
 
-    # Use exponential penalties to heavily penalize mismatches
-    touristic_score = (100 - (touristic_diff ** 2)) * touristic_weight
-    cultural_score = (100 - (cultural_diff ** 2)) * cultural_weight
-    chill_score = (100 - (chill_diff ** 2)) * chill_weight
-    popularity_score_calculated = (100 - (popularity_diff ** 2)) * popularity_weight
+    # Apply a linear penalty by subtracting the difference from 100
+    touristic_score = max(0, 100 - touristic_diff)
+    cultural_score = max(0, 100 - cultural_diff)
+    chill_score = max(0, 100 - chill_diff)
+    popularity_score = max(0, 100 - popularity_diff) * 2
 
-    # Calculate total score and normalize it
-    total_score = touristic_score + cultural_score + chill_score + popularity_score_calculated
-    max_possible_score = (touristic_weight + cultural_weight + chill_weight + popularity_weight) * 100
-    normalized_score = (total_score / max_possible_score) * 100 if max_possible_score != 0 else 0
+    # Average the scores to get the final matching score
+    total_score = (touristic_score + cultural_score + chill_score + popularity_score) /  5
 
-    # Return the rounded score
-    return round(normalized_score)
+    # Return the rounded score, ensuring it's not negative
+    return round(total_score)
 
 
 @app.route('/')
@@ -81,7 +72,7 @@ def update_activities():
     return jsonify({'activities': activities})
 
 
-# Charger les données JSON
+# Load the data from the JSON file
 with open('tourist_sites.json', 'r', encoding='utf-8') as f:
     tourist_sites = json.load(f)
 
