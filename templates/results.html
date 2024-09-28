@@ -290,6 +290,53 @@
     margin: 5px 0;
     }
 
+    .filters-section {
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .filter-group {
+        margin-bottom: 15px;
+    }
+
+    #heart-filters {
+        display: flex;
+        gap: 10px;
+    }
+
+    .heart-icon {
+        font-size: 24px;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+    }
+
+    .heart-icon:hover {
+        transform: scale(1.2);  /* Increase the size on hover */
+    }
+
+    .heart-icon.selected {
+        color: red;
+        font-size: 28px; /* Highlight the selected hearts */
+    }
+
+    .unesco-icon {
+        font-size: 30px;
+        cursor: pointer;
+        margin-left: 10px;
+        transition: transform 0.2s ease;
+    }
+
+    .unesco-icon:hover {
+        transform: scale(1.2);  /* Increase the size on hover */
+    }
+
+    .unesco-icon.selected {
+        color: gold;
+        font-size: 34px;
+    }
+
     /* Styles pour les appareils mobiles */
     @media screen and (max-width: 768px) {
         /* Réinitialisation des marges du body et du html */
@@ -372,6 +419,7 @@
         .activity-card {
             margin-bottom: 20px;
         }
+        
     }
 </style>
 </head>
@@ -398,42 +446,43 @@
         <!-- Section gauche -->
         <div class="left-section">
             <!-- Filtres -->
-            <div id="filters">
-                <div>
+            <div id="filters" class="filters-section">
+                <div class="filter-group">
                     <label for="touristique">Touristique (1 à 5): <span id="touristique_value">3</span></label>
                     <input type="range" id="touristique" name="touristique" min="1" max="5" value="3" oninput="updateCriteria()">
                 </div>
-                <div>
+                <div class="filter-group">
                     <label for="culturel">Culturel (1 à 5): <span id="culturel_value">3</span></label>
                     <input type="range" id="culturel" name="culturel" min="1" max="5" value="3" oninput="updateCriteria()">
                 </div>
-                <div>
+                <div class="filter-group">
                     <label for="chill">Chill (1 à 5): <span id="chill_value">3</span></label>
                     <input type="range" id="chill" name="chill" min="1" max="5" value="3" oninput="updateCriteria()">
                 </div>
-                <div>
+                <div class="filter-group">
                     <label for="popularity">Popularité (1 à 5): <span id="popularity_value">5</span></label>
                     <input type="range" id="popularity" name="popularity" min="1" max="5" value="5" oninput="updateCriteria()">
                 </div>
 
-                <!-- New filter for hearts -->
-                <div>
-                    <label for="hearts">Nombre minimum de coeurs:</label>
-                    <select id="hearts" name="hearts" onchange="updateCriteria()">
-                        <option value="1">>= 1 coeur</option>
-                        <option value="2">>= 2 coeurs</option>
-                        <option value="3">>= 3 coeurs</option>
-                        <option value="4">>= 4 coeurs</option>
-                    </select>
+                <!-- Filter for hearts (using clickable icons) -->
+                <div class="filter-group hearts-filter">
+                    <label>Nombre minimum de coeurs:</label>
+                    <div id="heart-filters">
+                        <span class="heart-icon" data-value="1" onclick="selectHearts(1)">🤍</span>
+                        <span class="heart-icon" data-value="2" onclick="selectHearts(2)">❤️‍🔥❤️‍🔥</span>
+                        <span class="heart-icon" data-value="3" onclick="selectHearts(3)">❤️‍🔥❤️‍🔥❤️‍🔥</span>
+                        <span class="heart-icon" data-value="4" onclick="selectHearts(4)">❤️‍🔥❤️‍🔥❤️‍🔥❤️‍🔥</span>
+                    </div>
                 </div>
 
-                <!-- New checkbox for UNESCO filter -->
-                <div>
-                    <label for="unesco">Filtrer uniquement le patrimoine UNESCO:</label>
-                    <input type="checkbox" id="unesco" name="unesco" onchange="updateCriteria()">
+                <!-- UNESCO filter icon with tooltip -->
+                <div class="filter-group">
+                    <label>Filtrer uniquement le patrimoine UNESCO:</label>
+                    <span class="unesco-icon" id="unesco-filter" title="Ce site fait partie du patrimoine mondial de l'UNESCO en raison de son importance historique et culturelle, englobant des monuments emblématiques et des quartiers historiques de Paris." onclick="toggleUnesco()">
+                        🏛️
+                    </span>
                 </div>
             </div>
-
             <!-- Résultats -->
             <div id="results">
                 <!-- Les activités seront insérées ici dynamiquement -->
@@ -661,34 +710,7 @@
             document.getElementById('wishlist-count').innerText = count;
         }
 
-        // Fonction pour récupérer et afficher les activités depuis le serveur
-        function updateCriteria() {
-            const touristique = document.getElementById('culturel').value;
-            const culturel = document.getElementById('culturel').value;
-            const chill = document.getElementById('chill').value;
-            const popularity = document.getElementById('popularity').value;
-            const hearts = document.getElementById('hearts').value; // Get the selected number of hearts
-            const unescoOnly = document.getElementById('unesco').checked; // Check if UNESCO filter is enabled
 
-            document.getElementById('touristique_value').innerText = touristique;
-            document.getElementById('culturel_value').innerText = culturel;
-            document.getElementById('chill_value').innerText = chill;
-            document.getElementById('popularity_value').innerText = popularity;
-
-            fetch('/update_activities', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ touristique, culturel, chill, popularity, hearts, unescoOnly })
-            })
-            .then(response => response.json())
-            .then(data => {
-                displayActivities(data.activities);
-            })
-            .catch(error => console.error('Error:', error));
-        }
-        updateCriteria();
 
         // Fonction pour ouvrir la pop-up et charger le contenu
         function openPopup(slug) {
@@ -721,6 +743,78 @@
                     .replace(/[^a-z0-9 ]/g, '')
                     .trim().replace(/\s+/g, '-');
         }
+
+
+
+        let selectedHearts = 1;  // Default number of hearts
+        let unescoFilter = false; // UNESCO filter state
+
+        // Function to handle hearts selection
+        function selectHearts(hearts) {
+            selectedHearts = hearts;
+            updateHeartIcons(hearts);  // Update the appearance of the selected hearts
+            updateCriteria();  // Trigger the activity update
+        }
+
+        // Function to update the appearance of heart icons based on selection
+        function updateHeartIcons(selected) {
+            const heartIcons = document.querySelectorAll('.heart-icon');
+            heartIcons.forEach(icon => {
+                const value = parseInt(icon.getAttribute('data-value'));
+                if (value <= selected) {
+                    icon.classList.add('selected');  // Highlight selected hearts
+                } else {
+                    icon.classList.remove('selected');  // Remove highlight from others
+                }
+            });
+        }
+
+        // Function to toggle the UNESCO filter
+        function toggleUnesco() {
+            unescoFilter = !unescoFilter;  // Toggle the boolean value
+            const unescoIcon = document.getElementById('unesco-filter');
+            unescoIcon.classList.toggle('selected');  // Highlight the UNESCO icon if selected
+            updateCriteria();  // Trigger the activity update
+        }
+
+                // The unified function to handle all filter updates
+        function updateCriteria() {
+            const touristique = document.getElementById('touristique').value;
+            const culturel = document.getElementById('culturel').value;
+            const chill = document.getElementById('chill').value;
+            const popularity = document.getElementById('popularity').value;
+
+            // Update the display of current slider values
+            document.getElementById('touristique_value').innerText = touristique;
+            document.getElementById('culturel_value').innerText = culturel;
+            document.getElementById('chill_value').innerText = chill;
+            document.getElementById('popularity_value').innerText = popularity;
+
+            // Send the updated criteria to the backend
+            fetch('/update_activities', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    touristique, 
+                    culturel, 
+                    chill, 
+                    popularity, 
+                    hearts: selectedHearts,  // Pass the selected hearts filter
+                    unescoOnly: unescoFilter  // Pass the UNESCO filter
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                displayActivities(data.activities);  // Display the updated activities
+            })
+            .catch(error => console.error('Error:', error));
+        }
+        updateCriteria();
+
+
+
     </script>
 </body>
 </html>
