@@ -415,6 +415,23 @@
                     <label for="popularity">Popularité (1 à 5): <span id="popularity_value">5</span></label>
                     <input type="range" id="popularity" name="popularity" min="1" max="5" value="5" oninput="updateCriteria()">
                 </div>
+
+                <!-- New filter for hearts -->
+                <div>
+                    <label for="hearts">Nombre minimum de coeurs:</label>
+                    <select id="hearts" name="hearts" onchange="updateCriteria()">
+                        <option value="1">>= 1 coeur</option>
+                        <option value="2">>= 2 coeurs</option>
+                        <option value="3">>= 3 coeurs</option>
+                        <option value="4">>= 4 coeurs</option>
+                    </select>
+                </div>
+
+                <!-- New checkbox for UNESCO filter -->
+                <div>
+                    <label for="unesco">Filtrer uniquement le patrimoine UNESCO:</label>
+                    <input type="checkbox" id="unesco" name="unesco" onchange="updateCriteria()">
+                </div>
             </div>
 
             <!-- Résultats -->
@@ -646,10 +663,12 @@
 
         // Fonction pour récupérer et afficher les activités depuis le serveur
         function updateCriteria() {
-            const touristique = document.getElementById('touristique').value;
+            const touristique = document.getElementById('culturel').value;
             const culturel = document.getElementById('culturel').value;
             const chill = document.getElementById('chill').value;
             const popularity = document.getElementById('popularity').value;
+            const hearts = document.getElementById('hearts').value; // Get the selected number of hearts
+            const unescoOnly = document.getElementById('unesco').checked; // Check if UNESCO filter is enabled
 
             document.getElementById('touristique_value').innerText = touristique;
             document.getElementById('culturel_value').innerText = culturel;
@@ -661,7 +680,7 @@
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ touristique, culturel, chill, popularity })
+                body: JSON.stringify({ touristique, culturel, chill, popularity, hearts, unescoOnly })
             })
             .then(response => response.json())
             .then(data => {
@@ -669,7 +688,6 @@
             })
             .catch(error => console.error('Error:', error));
         }
-
         updateCriteria();
 
         // Fonction pour ouvrir la pop-up et charger le contenu

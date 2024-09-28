@@ -29,10 +29,10 @@ def calculate_matching_score(row, touristique, culturel, chill, popularity):
     touristic_score = max(0, 100 - touristic_diff)
     cultural_score = max(0, 100 - cultural_diff)
     chill_score = max(0, 100 - chill_diff)
-    popularity_score = max(0, 100 - popularity_diff) * 2
+    popularity_score = max(0, 100 - popularity_diff) * 1.5
 
     # Average the scores to get the final matching score
-    total_score = (touristic_score + cultural_score + chill_score + popularity_score) /  5
+    total_score = (touristic_score + cultural_score + chill_score + popularity_score) /  4.5
 
     # Return the rounded score, ensuring it's not negative
     return round(total_score)
@@ -57,13 +57,34 @@ def update_activities():
     culturel = data.get('culturel')
     chill = data.get('chill')
     popularity = data.get('popularity')
+    hearts_filter = int(data.get('hearts'))  # Number of hearts
+    unesco_only = data.get('unescoOnly')  # Filter by UNESCO
 
-    
     # Calculate the matching score for each activity
     df['affinity_score'] = df.apply(lambda row: calculate_matching_score(row, touristique, culturel, chill, popularity), axis=1)
 
+    # Define the logic to calculate the number of hearts based on must_do_score
+    def calculate_hearts(must_do_score):
+        if must_do_score >= 95:
+            return 4
+        elif must_do_score >= 85:
+            return 3
+        elif must_do_score >= 75:
+            return 2
+        else:
+            return 1
+
+    # Add a 'hearts' column based on the must_do_score
+    df['hearts'] = df['must_do_score'].apply(calculate_hearts)
+
+    # Apply the filters
+    filtered_df = df[df['hearts'] >= hearts_filter]
+    
+    if unesco_only:  # Filter by UNESCO if the checkbox is checked
+        filtered_df = filtered_df[filtered_df['unesco'] == True]
+
     # Sort activities by affinity score in descending order (higher scores are more relevant)
-    sorted_df = df.sort_values(by='affinity_score', ascending=False)
+    sorted_df = filtered_df.sort_values(by='affinity_score', ascending=False)
 
     # Convert to a list of dictionaries for JSON serialization
     activities = sorted_df.to_dict(orient='records')
